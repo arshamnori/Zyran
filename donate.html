@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حمایت از سرور | Zyran.ir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page-loader" id="pageLoader">
+  <div class="loader-inner">
+    <div class="bloom">
+      <svg viewBox="0 0 96 96">
+        <g>
+          <path class="petal-b" d="M48 48 C48 30 40 18 30 12 C24 24 26 40 40 50 C43 48 46 48 48 48Z" fill="#f0a8c4"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:72deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:144deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:216deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:288deg;"/>
+          <circle class="center-dot" cx="48" cy="48" r="5"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-text pixel">ZYRAN<span class="dotir">.IR</span></div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<div id="petals" class="petal-field"></div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="بستن منو">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    بستن
+  </button>
+  <a href="index.html">خانه</a>
+  <a href="modes.html">حالت‌های بازی</a>
+  <a href="downloads.html">دانلودها</a>
+  <a href="guide.html">راهنما</a>
+  <a href="about.html">درباره ما</a>
+  <a href="shop.html">فروشگاه</a>
+  <a href="donate.html" class="current">حمایت از سرور</a>
+  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
+</div>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="brand">
+      <svg class="blossom brand-bloom" viewBox="0 0 24 24" fill="none">
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(72 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(144 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(216 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(288 12 12)"/>
+        <circle cx="12" cy="12" r="2.4" fill="#8a6248"/>
+      </svg>
+      <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">خانه</a></li>
+      <li><a href="modes.html">حالت‌های بازی</a></li>
+      <li><a href="downloads.html">دانلودها</a></li>
+      <li><a href="guide.html">راهنما</a></li>
+      <li><a href="about.html">درباره ما</a></li>
+      <li><a href="shop.html">فروشگاه</a></li>
+      <li><a href="donate.html" class="current">حمایت از سرور</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="login.html" class="btn-auth header-auth-btn">ورود / ثبت‌نام</a>
+      <button class="burger" id="burgerBtn" aria-label="منو"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="page-hero wrap">
+    <div class="section-tag">حمایت از سرور</div>
+    <h1>زیران رو باهم زنده نگه می‌داریم 💐</h1>
+    <p>هزینه‌ی هاست، دامنه، و ساخت محتوای جدید (حالت‌های بازی، ایونت‌ها، ریسورس‌پک‌های اختصاصی) از حمایت شما تأمین می‌شه.</p>
+  </div>
+
+  <section class="page-section">
+    <div class="wrap">
+      <div class="donate-strip">
+        <div class="liquid-blob moss" style="width:220px; height:220px; top:-60px; left:-40px;"></div>
+        <div class="liquid-blob sakura" style="width:180px; height:180px; bottom:-70px; right:-30px; opacity:0.22;"></div>
+        <div>
+          <h3>یک حمایت کوچیک، یه بهار طولانی‌تر برای زیران</h3>
+          <p>روی دکمه‌ی زیر بزن و مبلغ دلخواهت رو وارد کن.</p>
+        </div>
+        <a href="#" class="donate-btn" id="donateMain">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 5.9 4 4.4 7.7C19.5 16.4 12 21 12 21Z"/></svg>
+          حمایت از سرور
+        </a>
+      </div>
+
+      <div class="donate-ways">
+        <div class="donate-way">
+          <h4>کارت به کارت</h4>
+          <p>حمایت مستقیم با انتقال کارت‌به‌کارت. شماره کارت رو از تلگرام یا دیسکورد بگیر.</p>
+          <a href="#" class="add-cart-btn" style="display:inline-block; padding:10px 18px;">مشاهده‌ی شماره کارت</a>
+        </div>
+        <div class="donate-way">
+          <h4>درگاه آنلاین</h4>
+          <p>پرداخت امن و سریع با کارت بانکی از طریق درگاه پرداخت (به‌زودی فعال می‌شه).</p>
+          <a href="#" class="add-cart-btn" style="display:inline-block; padding:10px 18px;">پرداخت آنلاین</a>
+        </div>
+        <div class="donate-way">
+          <h4>خرید پک</h4>
+          <p>یک پک از فروشگاه بخر؛ هم امکانات ویژه می‌گیری، هم حمایت کردی.</p>
+          <a href="shop.html" class="add-cart-btn" style="display:inline-block; padding:10px 18px;">رفتن به فروشگاه</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="float-donate-wrap">
+  <span class="float-donate-ring"></span>
+  <span class="float-donate-ring ring2"></span>
+  <a href="donate.html" class="float-donate">
+    <span class="float-donate-emoji">💖</span>
+    <span class="float-donate-text">حمایت از زیران</span>
+  </a>
+</div>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <strong>سبد خرید</strong>
+    <button id="cartClose" class="cart-close-btn" aria-label="بستن سبد خرید">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>جمع کل</span><span id="cartTotal">۰ تومان</span></div>
+    <a href="shop.html" class="checkout-btn" style="display:block; text-align:center;">رفتن به فروشگاه</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
+        <p>سروری برای اونایی که هم عاشق کرفتن، هم عاشق بهار ژاپنی‌ان. یه جامعه‌ی کوچیک و دوستانه، زیر شکوفه‌های گیلاس.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="تلگرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="دیسکورد"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>سرور</h5>
+        <a href="modes.html">حالت‌های بازی</a>
+        <a href="downloads.html">دانلودها</a>
+        <a href="shop.html">فروشگاه</a>
+      </div>
+      <div class="footer-col">
+        <h5>راهنما</h5>
+        <a href="guide.html">نصب و اتصال</a>
+        <a href="about.html">درباره ما</a>
+        <a href="account.html">حساب من</a>
+      </div>
+      <div class="footer-col footer-cta">
+        <h5>حمایت از زیران</h5>
+        <p>با یه حمایت کوچیک، بهار زیران رو طولانی‌تر کن.</p>
+        <a href="donate.html" class="add-cart-btn" style="display:inline-block; padding:10px 20px;">حمایت کن 💖</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Zyran.ir — تمام حقوق محفوظ است.</span>
+      <span class="footer-ip">Zyran.ir</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/main.js"></script>
+<script src="assets/cart.js"></script>
+<script>
+  document.getElementById('donateMain').addEventListener('click', (e) => {
+    e.preventDefault();
+    showToast('لینک درگاه دونیت رو اینجا جایگزین کن 💖');
+  });
+</script>
+</body>
+</html>

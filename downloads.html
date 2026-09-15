@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دانلودها | Zyran.ir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page-loader" id="pageLoader">
+  <div class="loader-inner">
+    <div class="bloom">
+      <svg viewBox="0 0 96 96">
+        <g>
+          <path class="petal-b" d="M48 48 C48 30 40 18 30 12 C24 24 26 40 40 50 C43 48 46 48 48 48Z" fill="#f0a8c4"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:72deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:144deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:216deg;"/>
+          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:288deg;"/>
+          <circle class="center-dot" cx="48" cy="48" r="5"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-text pixel">ZYRAN<span class="dotir">.IR</span></div>
+    <div class="loader-dots"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<div id="petals" class="petal-field"></div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="بستن منو">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    بستن
+  </button>
+  <a href="index.html">خانه</a>
+  <a href="modes.html">حالت‌های بازی</a>
+  <a href="downloads.html" class="current">دانلودها</a>
+  <a href="shop.html">فروشگاه</a>
+  <a href="donate.html">حمایت از سرور</a>
+  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
+</div>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="brand">
+      <svg class="blossom brand-bloom" viewBox="0 0 24 24" fill="none">
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(72 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(144 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(216 12 12)"/>
+        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(288 12 12)"/>
+        <circle cx="12" cy="12" r="2.4" fill="#8a6248"/>
+      </svg>
+      <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">خانه</a></li>
+      <li><a href="modes.html">حالت‌های بازی</a></li>
+      <li><a href="downloads.html" class="current">دانلودها</a></li>
+      <li><a href="guide.html">راهنما</a></li>
+      <li><a href="about.html">درباره ما</a></li>
+      <li><a href="shop.html">فروشگاه</a></li>
+      <li><a href="donate.html">حمایت از سرور</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="login.html" class="btn-auth header-auth-btn">ورود / ثبت‌نام</a>
+      <button class="burger" id="burgerBtn" aria-label="منو"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="page-hero wrap">
+    <div class="section-tag">دانلودها</div>
+    <h1>مود، ریسورس‌پک و شیدر</h1>
+    <p>همه‌چیز برای تجربه‌ی بهتر بازی؛ مخصوص فابریک و اپتیفاین روی نسخه‌ی ۱.۲۶.۲، و بسته‌های ویژه‌ی بدوارز روی ۱.۸.۹.</p>
+  </div>
+
+  <section class="page-section">
+    <div class="wrap">
+      <div class="tabs" id="dlTabs">
+        <button class="tab-btn active" data-tab="fabric">فابریک — 1.26.2</button>
+        <button class="tab-btn" data-tab="optifine">اپتیفاین — 1.26.2</button>
+        <button class="tab-btn" data-tab="bedwars">بدوارز — 1.8.9</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="fabric">
+        <div class="dl-grid">
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">مود</span></div>
+            <h4>Fabric API</h4>
+            <p>پایه‌ی اجرای تمام مودهای فابریک روی سرور، پیش‌نیاز اجباری.</p>
+            <a href="#" class="dl-btn" data-download="fabric-api">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">ریسورس‌پک</span></div>
+            <h4>بسته‌ی ساکورا بلوم</h4>
+            <p>بافت‌های الهام‌گرفته از بهار ژاپنی برای درخت‌ها، بلوک‌ها و آسمان.</p>
+            <a href="#" class="dl-btn" data-download="sakura-bloom-pack">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">شیدر</span></div>
+            <h4>Sakura Shaders</h4>
+            <p>نور نرم، سایه‌های ملایم و افکت گلبرگ‌ریزی هماهنگ با تم سرور.</p>
+            <a href="#" class="dl-btn" data-download="sakura-shaders-fabric">دانلود</a>
+          </div>
+        </div>
+        <p class="version-note">همه‌ی موارد این بخش برای Minecraft 1.26.2 با لودر Fabric تست شده‌اند.</p>
+      </div>
+
+      <div class="tab-panel" data-panel="optifine">
+        <div class="dl-grid">
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">نصبی</span></div>
+            <h4>OptiFine HD</h4>
+            <p>افزایش FPS، پشتیبانی از شیدر و ریسورس‌پک‌های سفارشی.</p>
+            <a href="#" class="dl-btn" data-download="optifine-hd">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">ریسورس‌پک</span></div>
+            <h4>بسته‌ی ساکورا بلوم (اپتیفاین)</h4>
+            <p>همان بسته‌ی ساکورا بلوم، بهینه‌شده برای اجرا با اپتیفاین.</p>
+            <a href="#" class="dl-btn" data-download="sakura-bloom-pack-of">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">شیدر</span></div>
+            <h4>Sakura Shaders (OF)</h4>
+            <p>نسخه‌ی سازگار با اپتیفاین از شیدر رسمی زیران.</p>
+            <a href="#" class="dl-btn" data-download="sakura-shaders-of">دانلود</a>
+          </div>
+        </div>
+        <p class="version-note">همه‌ی موارد این بخش برای Minecraft 1.26.2 با OptiFine تست شده‌اند.</p>
+      </div>
+
+      <div class="tab-panel" data-panel="bedwars">
+        <div class="dl-grid">
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">ریسورس‌پک</span></div>
+            <h4>بسته‌ی بدوارز کلاسیک</h4>
+            <p>بافت‌های واضح برای دید بهتر بلوک‌ها و آیتم‌ها در نبردهای بدوارز.</p>
+            <a href="#" class="dl-btn" data-download="bedwars-pack-189">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">ابزار</span></div>
+            <h4>لانچر پیشنهادی نسخه‌ی ۱.۸.۹</h4>
+            <p>راهنمای نصب سریع نسخه‌ی ۱.۸.۹ برای اتصال بدون دردسر به بدوارز.</p>
+            <a href="#" class="dl-btn" data-download="launcher-189-guide">دانلود</a>
+          </div>
+          <div class="dl-card">
+            <div class="dl-top"><span class="dl-kind">شیدر سبک</span></div>
+            <h4>Lite Shaders 1.8.9</h4>
+            <p>شیدر سبک برای حفظ FPS بالا در درگیری‌های شلوغ بدوارز.</p>
+            <a href="#" class="dl-btn" data-download="lite-shaders-189">دانلود</a>
+          </div>
+        </div>
+        <p class="version-note">همه‌ی موارد این بخش برای Minecraft 1.8.9 آماده شده‌اند.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-tag">لانچرهای پیشنهادی</div>
+        <h2 class="section-title">با کدوم لانچر وصل بشیم؟</h2>
+        <p class="section-desc">اگه اکانت اصلی مایکروسافت نداری، این لانچرها راحت‌ترین راه برای بازی روی نسخه‌های مختلفن. یک آیکون از هرکدوم رو خودت بعداً جایگزین کن.</p>
+      </div>
+      <div class="launchers-grid">
+        <div class="launcher-card">
+          <div class="launcher-icon">TL</div>
+          <h4>TLauncher</h4>
+          <p>پرکاربردترین لانچر رایگان؛ پشتیبانی از اکثر نسخه‌ها و مودها، مناسب برای شروع سریع.</p>
+        </div>
+        <div class="launcher-card">
+          <div class="launcher-icon">PL</div>
+          <h4>Phoenix Launcher</h4>
+          <p>رابط کاربری ساده‌تر و سبک‌تر، گزینه‌ی خوبی برای سیستم‌های ضعیف‌تر.</p>
+        </div>
+        <div class="launcher-card">
+          <div class="launcher-icon">MC</div>
+          <h4>لانچر رسمی ماینکرفت</h4>
+          <p>اگه اکانت اصلی مایکروسافت داری، همیشه امن‌ترین و پایدارترین گزینه‌ست.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="float-donate-wrap">
+  <span class="float-donate-ring"></span>
+  <span class="float-donate-ring ring2"></span>
+  <a href="donate.html" class="float-donate">
+    <span class="float-donate-emoji">💖</span>
+    <span class="float-donate-text">حمایت از زیران</span>
+  </a>
+</div>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <strong>سبد خرید</strong>
+    <button id="cartClose" class="cart-close-btn" aria-label="بستن سبد خرید">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-total"><span>جمع کل</span><span id="cartTotal">۰ تومان</span></div>
+    <a href="shop.html" class="checkout-btn" style="display:block; text-align:center;">رفتن به فروشگاه</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
+        <p>سروری برای اونایی که هم عاشق کرفتن، هم عاشق بهار ژاپنی‌ان. یه جامعه‌ی کوچیک و دوستانه، زیر شکوفه‌های گیلاس.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="تلگرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></a>
+          <a href="#" class="social-btn" aria-label="دیسکورد"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>سرور</h5>
+        <a href="modes.html">حالت‌های بازی</a>
+        <a href="downloads.html">دانلودها</a>
+        <a href="shop.html">فروشگاه</a>
+      </div>
+      <div class="footer-col">
+        <h5>راهنما</h5>
+        <a href="guide.html">نصب و اتصال</a>
+        <a href="about.html">درباره ما</a>
+        <a href="account.html">حساب من</a>
+      </div>
+      <div class="footer-col footer-cta">
+        <h5>حمایت از زیران</h5>
+        <p>با یه حمایت کوچیک، بهار زیران رو طولانی‌تر کن.</p>
+        <a href="donate.html" class="add-cart-btn" style="display:inline-block; padding:10px 20px;">حمایت کن 💖</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Zyran.ir — تمام حقوق محفوظ است.</span>
+      <span class="footer-ip">Zyran.ir</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/main.js"></script>
+<script src="assets/cart.js"></script>
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector('.tab-panel[data-panel="'+btn.dataset.tab+'"]').classList.add('active');
+    });
+  });
+  document.querySelectorAll('[data-download]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      if(a.getAttribute('href') === '#'){
+        e.preventDefault();
+        showToast('لینک دانلود هنوز اضافه نشده — به‌زودی 🌸');
+      }
+    });
+  });
+</script>
+</body>
+</html>
