@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("zyran_theme") === "light" ? "light" : "dark");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zyran.ir | سرور ماینکرفت زیران</title>
+<title>سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<meta name="description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
+<meta name="author" content="Zyran.ir">
+<meta name="theme-color" content="#151923">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://zyran.ir/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="Zyran.ir">
+<meta property="og:title" content="سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی">
+<meta property="og:description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
+<meta property="og:url" content="https://zyran.ir/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی">
+<meta name="twitter:description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://zyran.ir/#website","url":"https://zyran.ir/","name":"Zyran.ir","inLanguage":"fa-IR","description":"سرور ماینکرفت Zyran.ir؛ بازی در حالت‌های بدوارز و سروایوال، راهنمای اتصال، دانلودها و امکانات جامعه بازیکنان زیران."},{"@type":"Organization","@id":"https://zyran.ir/#organization","name":"Zyran.ir","url":"https://zyran.ir/"},{"@type":"WebPage","@id":"https://zyran.ir/#webpage","url":"https://zyran.ir/","name":"Zyran.ir | سرور ماینکرفت فارسی و ایرانی","description":"سرور ماینکرفت Zyran.ir؛ بازی در حالت‌های بدوارز و سروایوال، راهنمای اتصال، دانلودها و امکانات جامعه بازیکنان زیران.","isPartOf":{"@id":"https://zyran.ir/#website"},"inLanguage":"fa-IR"},{"@type":"VideoGame","name":"Minecraft","genre":"Sandbox","description":"سرور ماینکرفت Zyran.ir برای بازیکنان و حالت‌های مختلف بازی."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"خانه","item":"https://zyran.ir/"}]}</script>
 </head>
 <body>
 <div class="page-loader" id="pageLoader">
@@ -32,10 +51,13 @@
 
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" id="mobileClose" aria-label="بستن منو">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    بستن
-  </button>
+  <div class="mobile-nav-head">
+    <span class="mobile-nav-title">منوی سایت</span>
+    <button class="mobile-close" id="mobileClose" aria-label="بستن منو" title="بستن منو">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
   <a href="index.html" class="current">خانه</a>
   <a href="modes.html">حالت‌های بازی</a>
   <a href="downloads.html">دانلودها</a>
@@ -43,11 +65,13 @@
   <a href="about.html">درباره ما</a>
   <a href="shop.html">فروشگاه</a>
   <a href="donate.html">حمایت از سرور</a>
-  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
+  <a href="telegram-bot.html">بات تلگرامی</a>
+  <a href="#faq">سؤالات متداول</a>
+  <a href="#feedback">انتقادات و پیشنهادات</a>
 </div>
 
 <header>
-  <nav class="wrap">
+  <nav class="wrap" aria-label="ناوبری اصلی">
     <a href="index.html" class="brand">
       <svg class="blossom brand-bloom" viewBox="0 0 24 24" fill="none">
         <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4"/>
@@ -67,8 +91,15 @@
       <li><a href="about.html">درباره ما</a></li>
       <li><a href="shop.html">فروشگاه</a></li>
       <li><a href="donate.html">حمایت از سرور</a></li>
+      <li><a href="telegram-bot.html">بات تلگرامی</a></li>
+      <li><a href="#faq">سؤالات متداول</a></li>
+      <li><a href="#feedback">انتقادات و پیشنهادات</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم روشن/تاریک">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
+      </button>
       <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         <span class="cart-count" id="cartCount">0</span>
@@ -95,7 +126,7 @@
         </div>
         <div class="hero-meta">
           <div class="meta-item"><span class="pulse-dot"></span><span class="num" id="onlineCount">—</span><span class="lbl">آنلاین از ۲۰۰</span></div>
-          <div class="meta-item"><span class="num">v1.26.2</span><span class="lbl">نسخه فعلی</span></div>
+          <div class="meta-item"><span class="num">v26.2</span><span class="lbl">نسخه فعلی</span></div>
           <div class="meta-item"><span class="num">2</span><span class="lbl">حالت بازی فعال</span></div>
         </div>
       </div>
@@ -109,27 +140,62 @@
           </defs>
           <ellipse cx="210" cy="410" rx="150" ry="18" fill="#000" opacity="0.25"/>
           <g class="tree-sway" style="transform-origin:210px 410px;">
-            <path d="M205 410 C200 350 195 300 198 260 C185 250 175 235 178 210" stroke="#8a6248" stroke-width="20" fill="none" stroke-linecap="round"/>
-            <path d="M205 410 C210 350 215 300 212 260 C222 248 235 232 232 205" stroke="#6e4c34" stroke-width="14" fill="none" stroke-linecap="round"/>
-            <path d="M198 260 C170 255 145 268 128 250" stroke="#8a6248" stroke-width="12" fill="none" stroke-linecap="round"/>
-            <path d="M212 260 C245 250 265 258 285 240" stroke="#8a6248" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <!-- layered trunk and fine branches -->
+            <path d="M205 410 C198 360 194 318 201 275 C207 238 197 211 184 187" stroke="#68462f" stroke-width="22" fill="none" stroke-linecap="round"/>
+            <path d="M207 408 C211 355 216 313 212 276 C208 239 222 218 239 190" stroke="#8a6248" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <path d="M199 315 C175 292 151 280 119 274 C96 270 79 256 66 239" stroke="#6e4c34" stroke-width="11" fill="none" stroke-linecap="round"/>
+            <path d="M202 285 C173 267 151 247 132 222 C116 202 96 193 76 188" stroke="#8a6248" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M212 300 C242 283 268 273 296 274 C320 275 341 264 356 245" stroke="#6e4c34" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M216 265 C247 246 265 223 279 199 C291 179 310 168 332 164" stroke="#8a6248" stroke-width="8" fill="none" stroke-linecap="round"/>
+            <path d="M197 247 C176 226 161 202 155 178 C149 157 135 142 118 132" stroke="#6e4c34" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M229 231 C247 210 251 184 248 160 C246 140 256 122 274 109" stroke="#6e4c34" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M120 274 C112 253 103 236 88 221 M296 274 C303 252 316 234 333 219 M279 199 C265 185 259 169 258 151 M155 178 C168 160 175 143 174 126" stroke="#8a6248" stroke-width="4.5" fill="none" stroke-linecap="round"/>
 
-            <circle cx="196" cy="175" r="112" fill="url(#blossomGlow)" opacity="0.55"/>
-            <circle cx="196" cy="180" r="100" fill="#f0a8c4"/>
-            <circle cx="118" cy="215" r="62" fill="#f7c4da"/>
-            <circle cx="282" cy="210" r="68" fill="#e88bb2"/>
-            <circle cx="198" cy="112" r="58" fill="#f7c4da"/>
-            <circle cx="140" cy="150" r="48" fill="#fadce9" opacity="0.9"/>
-            <circle cx="255" cy="150" r="50" fill="#e88bb2" opacity="0.9"/>
-            <circle cx="128" cy="250" r="34" fill="#f0a8c4" opacity="0.85"/>
-            <circle cx="288" cy="248" r="36" fill="#f7c4da" opacity="0.85"/>
+            <path d="M201 405 C199 348 202 306 207 278" stroke="#a87959" stroke-width="3" fill="none" opacity=".7"/>
+            <path d="M207 278 C188 260 171 239 158 214 M212 276 C233 258 252 241 266 217" stroke="#b48666" stroke-width="2.5" fill="none" opacity=".65"/>
 
-            <g fill="#fff6fa" opacity="0.8">
-              <circle cx="150" cy="140" r="3"/><circle cx="230" cy="120" r="3.5"/>
-              <circle cx="180" cy="200" r="2.5"/><circle cx="260" cy="190" r="3"/>
-              <circle cx="120" cy="190" r="2.5"/><circle cx="300" cy="230" r="2.5"/>
+            <!-- soft blossom mass -->
+            <circle cx="205" cy="175" r="122" fill="url(#blossomGlow)" opacity=".55"/>
+            <g opacity=".96">
+              <circle cx="106" cy="208" r="50" fill="#f5bdd4"/><circle cx="145" cy="157" r="55" fill="#fadce9"/>
+              <circle cx="198" cy="119" r="61" fill="#f7c4da"/><circle cx="257" cy="142" r="57" fill="#e88bb2"/>
+              <circle cx="304" cy="195" r="54" fill="#f0a8c4"/><circle cx="277" cy="238" r="55" fill="#f7c4da"/>
+              <circle cx="207" cy="208" r="67" fill="#ef9fbe"/><circle cx="143" cy="237" r="42" fill="#f0a8c4"/>
+              <circle cx="337" cy="235" r="34" fill="#e88bb2"/><circle cx="79" cy="242" r="31" fill="#f7c4da"/>
+              <circle cx="246" cy="88" r="34" fill="#fadce9"/><circle cx="116" cy="135" r="31" fill="#f7c4da"/>
+            </g>
+
+            <!-- individual cherry blossoms for detail -->
+            <g class="sakura-blooms" fill="#fff6fa" stroke="#d6789f" stroke-width="1.1">
+              <g transform="translate(105 183) scale(.8)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(154 137) scale(.72)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(204 102) scale(.9)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(258 129) scale(.75)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
+              <g transform="translate(302 184) scale(.8)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(272 223) scale(.68)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
+              <g transform="translate(132 226) scale(.65)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(232 176) scale(.62)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(183 212) scale(.55)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
+            </g>
+
+            <g fill="#fff6fa" opacity=".72">
+              <circle cx="125" cy="157" r="2.5"/><circle cx="180" cy="126" r="3"/><circle cx="223" cy="145" r="2.3"/>
+              <circle cx="284" cy="159" r="2.7"/><circle cx="321" cy="210" r="2.2"/><circle cx="153" cy="205" r="2.4"/>
+              <circle cx="244" cy="238" r="2.5"/><circle cx="93" cy="224" r="2.2"/>
+            </g>
+
+            <!-- extra fine detail: bark rings + a few more blossom sprigs for richness -->
+            <path d="M197 392 C201 388 205 388 209 392M195 370 C200 366 206 366 211 370M198 350 C202 347 207 347 211 350" stroke="#5e4230" stroke-width="1.4" fill="none" opacity=".55" stroke-linecap="round"/>
+            <g class="sakura-blooms" fill="#fff6fa" stroke="#d6789f" stroke-width="1.1">
+              <g transform="translate(90 260) scale(.6)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+              <g transform="translate(320 220) scale(.58)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
+              <g transform="translate(168 95) scale(.5)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
+            </g>
+            <g fill="#fff6fa" opacity=".65">
+              <circle cx="100" cy="190" r="2"/><circle cx="310" cy="170" r="2.3"/><circle cx="205" cy="260" r="2.1"/><circle cx="162" cy="165" r="1.9"/>
             </g>
           </g>
+          <circle id="treeHitArea" cx="205" cy="175" r="140" fill="transparent" style="cursor:pointer"/>
 
           <g class="floating-petal-1" style="transform-origin:70px 120px;">
             <path d="M70 118C67 120 65 124 67 128C68.5 130.5 70 131 70 131C70 131 71.5 130.5 73 128C75 124 73 120 70 118Z" fill="#f0a8c4"/>
@@ -141,6 +207,7 @@
             <path d="M60 258C57 260 55 264 57 268C58.5 270.5 60 271 60 271C60 271 61.5 270.5 63 268C65 264 63 260 60 258Z" fill="#f7c4da"/>
           </g>
         </svg>
+        <div id="treeShed"></div>
       </div>
     </div>
   </section>
@@ -155,27 +222,44 @@
       <div class="features-grid">
         <div class="feature-box">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-          <h4>پینگ پایین</h4>
+          <h3>پینگ پایین</h3>
           <p>هاست قدرتمند اروپایی برای کمترین تأخیر ممکن برای بازیکن‌های ایرانی.</p>
         </div>
         <div class="feature-box">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <h4>امنیت بالا</h4>
+          <h3>امنیت بالا</h3>
           <p>رمزهای هش‌شده، محافظت در برابر بروت‌فورس و بک‌آپ منظم از دیتای بازیکن‌ها.</p>
         </div>
         <div class="feature-box">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v16M4 4h13l-2 4 2 4H4"/></svg>
-          <h4>آپدیت مداوم</h4>
+          <h3>آپدیت مداوم</h3>
           <p>محتوای جدید، ایونت‌های فصلی و بهبود مستمر حالت‌های بازی.</p>
         </div>
         <div class="feature-box">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-          <h4>تیم پشتیبانی فعال</h4>
+          <h3>تیم پشتیبانی فعال</h3>
           <p>ادمین‌های زیران همیشه توی دیسکورد و تلگرام در دسترسن.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="telegram-cta-section page-section" id="telegram-cta">
+    <div class="wrap">
+      <div class="telegram-site-card">
+        <div class="telegram-site-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 3.2 10.6c-.9.35-.88 1.63.03 1.94l4.65 1.58 1.74 5.73c.28.92 1.45 1.2 2.08.5l2.63-2.93 4.6 3.37c.78.57 1.88.13 2.03-.83L23.1 5.02c.16-.99-.67-1.88-1.6-1.52Z"/><path d="m7.88 14.12 9.58-7.1-7.3 8.05"/></svg>
+        </div>
+        <div class="telegram-site-copy">
+          <span class="telegram-kicker">ارتباط سریع با زیران</span>
+          <h2>بات تلگرامی Zyran</h2>
+          <p>از طریق بات تلگرامی به امکانات و اطلاع‌رسانی‌های زیران دسترسی داشته باش.</p>
+        </div>
+        <a class="telegram-site-btn" href="telegram-bot.html">ورود به بات <span>←</span></a>
+      </div>
+    </div>
+  </section>
+
 
   <section id="modes-preview">
     <div class="wrap">
@@ -313,6 +397,94 @@
       </div>
     </div>
   </section>
+
+  <section id="faq" class="faq-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-tag">سؤالات متداول</div>
+        <h2 class="section-title">جواب سؤال‌هایی که زیاد پرسیده می‌شن</h2>
+        <p class="section-desc">۱۰ سؤال کاربردی برای اینکه سریع‌تر با زیران آشنا بشی و وارد بازی بشی.</p>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary><span>چطور وارد سرور زیران بشم؟</span><span class="faq-plus">+</span></summary>
+          <p>ماینکرفت را با نسخه‌ی سازگار اجرا کن، از بخش Multiplayer سرور جدید بساز و آدرس سرور را وارد کن. راهنمای کامل اتصال در صفحه‌ی «راهنما» قرار دارد.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>آی‌پی سرور زیران چیه؟</span><span class="faq-plus">+</span></summary>
+          <p>آی‌پی سرور در بخش اصلی سایت نمایش داده می‌شود و با دکمه‌ی «کپی آی‌پی» می‌توانی آن را سریع کپی کنی.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>بدوارز با چه نسخه‌ای اجرا می‌شود؟</span><span class="faq-plus">+</span></summary>
+          <p>بدوارز زیران برای نسخه‌ی ۱.۸.۹ معرفی شده است. اگر نسخه یا تنظیمات اتصال تغییر کند، اطلاعیه‌ی جدید در سایت قرار می‌گیرد.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>سروایوال چه نسخه‌ای دارد؟</span><span class="faq-plus">+</span></summary>
+          <p>در حال حاضر سروایوال با نسخه‌ی ۱.۲۶.۲ معرفی شده است. برای جزئیات و تغییرات نسخه‌ها، صفحه‌ی حالت‌های بازی را بررسی کن.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>اگر در سرور باگ پیدا کردم کجا گزارش بدم؟</span><span class="faq-plus">+</span></summary>
+          <p>می‌توانی از بخش «انتقادات و پیشنهادات» همین صفحه استفاده کنی و مشکل را با توضیح دقیق، نام حالت بازی و در صورت امکان مراحل بازتولید گزارش کنی.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>آیا ادمین‌ها پاسخ‌گو هستند؟</span><span class="faq-plus">+</span></summary>
+          <p>تیم ادمین برای پشتیبانی در نظر گرفته شده و وضعیت نمایشی اعضای تیم در بخش ادمین‌های صفحه اصلی دیده می‌شود.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>چه حالت‌های بازی دیگری قرار است اضافه شود؟</span><span class="faq-plus">+</span></summary>
+          <p>اسکای‌بلاک، فکشنز، ایونت‌های فصلی و چند حالت دیگر در بخش حالت‌های بازی به‌عنوان گزینه‌های در حال توسعه معرفی شده‌اند.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>برای بازی کردن باید اکانت بسازم؟</span><span class="faq-plus">+</span></summary>
+          <p>ساخت حساب سایت برای امکانات حساب کاربری و بخش‌های مرتبط است؛ روش دقیق ورود به سرور را از راهنمای اتصال دنبال کن.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>آیا می‌توانم پیشنهاد یک گیم‌مود جدید بدهم؟</span><span class="faq-plus">+</span></summary>
+          <p>بله. پیشنهادت را در بخش انتقادات و پیشنهادات بنویس و توضیح بده چه چیزی آن حالت را جذاب می‌کند.</p>
+        </details>
+        <details class="faq-item">
+          <summary><span>حمایت مالی از سرور صرف چه چیزهایی می‌شود؟</span><span class="faq-plus">+</span></summary>
+          <p>طبق توضیحات سایت، حمایت‌ها برای هزینه‌های هاست، رویدادهای جدید و توسعه‌ی حالت‌های بیشتر در نظر گرفته شده‌اند.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="feedback" class="feedback-section">
+    <div class="wrap">
+      <div class="feedback-panel">
+        <div class="feedback-copy">
+          <div class="section-tag">صدای بازیکن‌ها</div>
+          <h2 class="section-title">انتقادات و پیشنهادات</h2>
+          <p class="section-desc">اینجا جای گفتن چیزیه که فکر می‌کنی زیران باید بهترش کنه. باگ، پیشنهاد گیم‌مود، مشکل رابط کاربری یا هر ایده‌ای داری بنویس.</p>
+          <div class="feedback-points">
+            <span>✓ باگ‌ها</span><span>✓ پیشنهاد گیم‌مود</span><span>✓ ایده‌های جدید</span>
+          </div>
+        </div>
+        <form class="feedback-form" id="feedbackForm">
+          <label>موضوع
+            <select id="feedbackType" required>
+              <option value="">انتخاب کن</option>
+              <option>گزارش باگ</option>
+              <option>پیشنهاد گیم‌مود</option>
+              <option>پیشنهاد برای سایت</option>
+              <option>انتقاد</option>
+              <option>سایر</option>
+            </select>
+          </label>
+          <label>نام یا نام کاربری <span>(اختیاری)</span>
+            <input id="feedbackName" type="text" maxlength="40" placeholder="مثلاً KRATOS_GOD3">
+          </label>
+          <label>متن پیام
+            <textarea id="feedbackMessage" maxlength="1000" rows="5" required placeholder="چی رو دوست داری بهتر یا متفاوت ببینی؟"></textarea>
+          </label>
+          <button type="submit" class="feedback-submit">ارسال بازخورد <span>→</span></button>
+          <small>این فرم فعلاً پیام را در همین مرورگر ثبت می‌کند؛ برای ارسال به تیم، اتصال بک‌اند یا تلگرام/دیسکورد باید بعداً اضافه شود.</small>
+        </form>
+      </div>
+    </div>
+  </section>
+
 
   <section id="donate-preview">
     <div class="wrap">

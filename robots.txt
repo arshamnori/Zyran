@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /account.html
+Disallow: /checkout.html
+Disallow: /login.html
+
+Sitemap: https://zyran.ir/sitemap.xml

@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa-IR" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("zyran_theme") === "light" ? "light" : "dark");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>درباره ما | Zyran.ir</title>
+<title>درباره Zyran.ir | داستان و جامعه سرور ماینکرفت</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<meta name="description" content="با Zyran.ir آشنا شوید؛ داستان شکل‌گیری سرور، هدف مجموعه و مسیر توسعه جامعه بازیکنان ماینکرفت زیران.">
+<meta name="author" content="Zyran.ir">
+<meta name="theme-color" content="#151923">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://zyran.ir/about.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="Zyran.ir">
+<meta property="og:title" content="درباره Zyran.ir | داستان و جامعه سرور ماینکرفت">
+<meta property="og:description" content="با Zyran.ir آشنا شوید؛ داستان شکل‌گیری سرور، هدف مجموعه و مسیر توسعه جامعه بازیکنان ماینکرفت زیران.">
+<meta property="og:url" content="https://zyran.ir/about.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="درباره Zyran.ir | داستان و جامعه سرور ماینکرفت">
+<meta name="twitter:description" content="با Zyran.ir آشنا شوید؛ داستان شکل‌گیری سرور، هدف مجموعه و مسیر توسعه جامعه بازیکنان ماینکرفت زیران.">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://zyran.ir/#website","url":"https://zyran.ir/","name":"Zyran.ir","inLanguage":"fa-IR","description":"سرور ماینکرفت Zyran.ir؛ بازی در حالت‌های بدوارز و سروایوال، راهنمای اتصال، دانلودها و امکانات جامعه بازیکنان زیران."},{"@type":"Organization","@id":"https://zyran.ir/#organization","name":"Zyran.ir","url":"https://zyran.ir/"},{"@type":"WebPage","@id":"https://zyran.ir/about.html#webpage","url":"https://zyran.ir/about.html","name":"درباره Zyran.ir | سرور ماینکرفت","description":"با Zyran.ir آشنا شوید؛ اطلاعاتی درباره سرور ماینکرفت زیران، هدف سایت و جامعه بازیکنان.","isPartOf":{"@id":"https://zyran.ir/#website"},"inLanguage":"fa-IR"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"خانه","item":"https://zyran.ir/"},{"@type":"ListItem","position":2,"name":"درباره زیران","item":"https://zyran.ir/about.html"}]}</script>
 </head>
 <body>
 <div class="page-loader" id="pageLoader">
@@ -32,10 +51,13 @@
 
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" id="mobileClose" aria-label="بستن منو">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    بستن
-  </button>
+  <div class="mobile-nav-head">
+    <span class="mobile-nav-title">منوی سایت</span>
+    <button class="mobile-close" id="mobileClose" aria-label="بستن منو" title="بستن منو">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
   <a href="index.html">خانه</a>
   <a href="modes.html">حالت‌های بازی</a>
   <a href="downloads.html">دانلودها</a>
@@ -43,11 +65,10 @@
   <a href="about.html" class="current">درباره ما</a>
   <a href="shop.html">فروشگاه</a>
   <a href="donate.html">حمایت از سرور</a>
-  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
-</div>
+</div></div>
 
 <header>
-  <nav class="wrap">
+  <nav class="wrap" aria-label="ناوبری اصلی">
     <a href="index.html" class="brand">
       <svg class="blossom brand-bloom" viewBox="0 0 24 24" fill="none">
         <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4"/>
@@ -69,6 +90,10 @@
       <li><a href="donate.html">حمایت از سرور</a></li>
     </ul>
     <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم روشن/تاریک">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
+      </button>
       <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         <span class="cart-count" id="cartCount">0</span>

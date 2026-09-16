@@ -74,17 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const dot = document.createElement('div');
     dot.className = 'fly-dot';
     const size = 14;
+    // PERF FIX: position is set once (left/top) and the actual movement now happens
+    // via a CSS "transform" transition (see .fly-dot in style.css) instead of animating
+    // left/top/width/height directly, which used to force a full layout recalculation
+    // on every frame of this animation.
+    const startX = from.left + from.width / 2 - size / 2;
+    const startY = from.top + from.height / 2 - size / 2;
+    const endX = to.left + to.width / 2 - size / 2;
+    const endY = to.top + to.height / 2 - size / 2;
+    dot.style.left = startX + 'px';
+    dot.style.top = startY + 'px';
     dot.style.width = size + 'px';
     dot.style.height = size + 'px';
-    dot.style.left = (from.left + from.width / 2 - size / 2) + 'px';
-    dot.style.top = (from.top + from.height / 2 - size / 2) + 'px';
     dot.style.opacity = '1';
+    dot.style.transform = 'translate(0,0) scale(1)';
     document.body.appendChild(dot);
     requestAnimationFrame(() => {
-      dot.style.left = (to.left + to.width / 2 - size / 2) + 'px';
-      dot.style.top = (to.top + to.height / 2 - size / 2) + 'px';
-      dot.style.width = '4px';
-      dot.style.height = '4px';
+      dot.style.transform = `translate(${(endX - startX).toFixed(1)}px, ${(endY - startY).toFixed(1)}px) scale(0.28)`;
       dot.style.opacity = '0';
     });
     setTimeout(() => dot.remove(), 650);

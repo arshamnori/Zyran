@@ -1,63 +1,117 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
-  hideLoader();
+  /* BUG FIX: this whole setup block now runs inside a try/catch. Previously, if any one
+     piece here threw on a given page, every line after it — including the init functions
+     below (page transitions, click-burst animation, etc.) — would silently never run on
+     that page, since one uncaught error stops the rest of this callback. */
+  try{
+    const year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+    hideLoader();
 
-  /* ---------- mobile nav ---------- */
-  const burgerBtn = document.getElementById('burgerBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  const mobileOverlay = document.getElementById('mobileOverlay');
-  const mobileClose = document.getElementById('mobileClose');
-  function openMobile(){ mobileNav.classList.add('open'); mobileOverlay.classList.add('open'); }
-  function closeMobile(){ mobileNav.classList.remove('open'); mobileOverlay.classList.remove('open'); }
-  if (burgerBtn) burgerBtn.addEventListener('click', openMobile);
-  if (mobileClose) mobileClose.addEventListener('click', closeMobile);
-  if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobile);
-  if (mobileNav) mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
+    /* ---------- dark / light theme ---------- */
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle){
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const next = current === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', next);
+        try{ localStorage.setItem('zyran_theme', next); }catch(e){}
+      });
+    }
 
-  /* ---------- copy IP ---------- */
-  const copyBtn = document.getElementById('copyBtn');
-  if (copyBtn) {
-    const copyLabel = document.getElementById('copyLabel');
-    copyBtn.addEventListener('click', async () => {
-      const ip = document.getElementById('ipText').textContent.trim();
-      try{
-        await navigator.clipboard.writeText(ip);
-      }catch(e){
-        const ta = document.createElement('textarea');
-        ta.value = ip; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
+    /* ---------- mobile nav ---------- */
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileClose = document.getElementById('mobileClose');
+
+    // Keep the mobile menu identical on every page. Missing/old links are repaired here.
+    if (mobileNav) {
+      const currentHref = location.pathname.split('/').pop() || 'index.html';
+      const menuItems = [
+        ['index.html','خانه'],
+        ['modes.html','حالت‌های بازی'],
+        ['downloads.html','دانلودها'],
+        ['guide.html','راهنما'],
+        ['about.html','درباره ما'],
+        ['shop.html','فروشگاه'],
+        ['donate.html','حمایت از سرور']
+      ];
+      menuItems.forEach(([href,label]) => {
+        let a = mobileNav.querySelector(`a[href="${href}"]`);
+        if (!a) { a = document.createElement('a'); a.href = href; mobileNav.appendChild(a); }
+        a.textContent = label;
+        a.classList.toggle('current', href === currentHref);
+      });
+      let auth = mobileNav.querySelector('a.btn-auth');
+      if (!auth) {
+        auth = document.createElement('a');
+        auth.className='btn-auth';
+        auth.href='login.html';
+        auth.textContent='ورود / ثبت‌نام';
+        auth.style.textAlign='center';
+        const head = mobileNav.querySelector('.mobile-nav-head');
+        if (head && head.nextSibling) mobileNav.insertBefore(auth, head.nextSibling);
+        else mobileNav.appendChild(auth);
       }
-      copyBtn.classList.add('copied');
-      copyLabel.textContent = 'کپی شد ✓';
-      showToast('آی‌پی سرور کپی شد: ' + ip);
-      setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'کپی آی‌پی'; }, 2000);
-    });
-  }
+      auth.href='login.html'; auth.textContent='ورود / ثبت‌نام'; auth.style.textAlign='center';
+    }
+    const openMobile = () => { mobileNav.classList.add('open'); mobileOverlay.classList.add('open'); };
+    const closeMobile = () => { mobileNav.classList.remove('open'); mobileOverlay.classList.remove('open'); };
+    if (burgerBtn) burgerBtn.addEventListener('click', openMobile);
+    if (mobileClose) mobileClose.addEventListener('click', closeMobile);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobile);
+    if (mobileNav) mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
 
-  /* ---------- fake online counter (DEMO ONLY) ----------
-     برای عدد واقعی باید از API بک‌اند بخش status استفاده کنیم، مثل:
-     fetch('https://api.zyran.ir/status').then(r=>r.json()).then(d => onlineVal = d.players_online)
-     الان فقط شبیه‌سازی شده تا شکل سایت مشخص باشه. */
-  const onlineEl = document.getElementById('onlineCount');
-  if (onlineEl) {
-    let onlineVal = 60 + Math.floor(Math.random()*40);
-    const render = () => { onlineEl.textContent = onlineVal; };
-    render();
-    setInterval(() => {
-      onlineVal = Math.max(20, Math.min(190, onlineVal + (Math.floor(Math.random()*7) - 3)));
+    /* ---------- copy IP ---------- */
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+      const copyLabel = document.getElementById('copyLabel');
+      copyBtn.addEventListener('click', async () => {
+        const ip = document.getElementById('ipText').textContent.trim();
+        try{
+          await navigator.clipboard.writeText(ip);
+        }catch(e){
+          const ta = document.createElement('textarea');
+          ta.value = ip; document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta);
+        }
+        copyBtn.classList.add('copied');
+        copyLabel.textContent = 'کپی شد ✓';
+        showToast('آی‌پی سرور کپی شد: ' + ip);
+        setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'کپی آی‌پی'; }, 2000);
+      });
+    }
+
+    /* ---------- fake online counter (DEMO ONLY) ----------
+       برای عدد واقعی باید از API بک‌اند بخش status استفاده کنیم، مثل:
+       fetch('https://api.zyran.ir/status').then(r=>r.json()).then(d => onlineVal = d.players_online)
+       الان فقط شبیه‌سازی شده تا شکل سایت مشخص باشه. */
+    const onlineEl = document.getElementById('onlineCount');
+    if (onlineEl) {
+      let onlineVal = 60 + Math.floor(Math.random()*40);
+      const render = () => { onlineEl.textContent = onlineVal; };
       render();
-    }, 4000);
-  }
+      setInterval(() => {
+        onlineVal = Math.max(20, Math.min(190, onlineVal + (Math.floor(Math.random()*7) - 3)));
+        render();
+      }, 4000);
+    }
+  }catch(err){ console.error('[zyran] header/nav setup failed:', err); }
 
-  initPetals();
-  initAuthState();
-  initScrollReveal();
-  initPageTransitions();
-  initStarfield();
-  initClickFX();
-  initDonateSparkles();
-  initAuthTabs();
+  /* BUG FIX: these used to be called back-to-back with no error handling. If any single
+     init function threw on a given page (e.g. a page missing an element another one
+     assumed was there), every init call after it in this list — including the click-burst
+     animation and the page-transition/logo-launch click handler — would silently never run
+     on that page, since one uncaught error stops the rest of this function. Running each one
+     independently means a problem in one feature can no longer take out the others. */
+  const inits = [
+    initPetals, initAuthState, initScrollReveal, initPageTransitions,
+    initStarfield, initClickFX, initTreeShed, initDonateSparkles, initAuthTabs, initCardHoverTouch
+  ];
+  inits.forEach(fn => {
+    try{ fn(); }catch(err){ console.error('[zyran]', fn.name, 'failed to init:', err); }
+  });
 });
 
 /* ---------- logged-in / admin nav state ----------
@@ -144,6 +198,16 @@ function initScrollReveal(){
   els.forEach(el => observer.observe(el));
 }
 
+/* ---------- logo "launch" shortcut: try to open the local Minecraft launcher ----------
+   Best-effort only: browsers can't force-launch a specific third-party app like TLauncher —
+   only apps that register their own protocol can be opened this way. TLauncher itself doesn't
+   register a dedicated scheme, so this uses the standard "minecraft://" protocol, which the
+   official Minecraft Launcher (and some TLauncher setups) register on install. If nothing is
+   registered, the browser just ignores it silently and the click still navigates home normally. */
+function tryOpenLauncher(){
+  try{ window.location.href = 'minecraft://'; }catch(e){}
+}
+
 /* ---------- page transitions: reuse the sakura loader as a bridge between pages ---------- */
 function initPageTransitions(){
   document.addEventListener('click', (e) => {
@@ -154,6 +218,11 @@ function initPageTransitions(){
 
     e.preventDefault();
     const destination = link.href;
+    const isBrand = !!link.closest('.brand');
+    if (isBrand){
+      tryOpenLauncher();
+      showToast('در حال تلاش برای باز کردن لانچر ماینکرفت... 🌸 اگه لانچرت (مثل TLauncher) نصب باشه باز می‌شه، وگرنه فقط میری صفحه‌ی اصلی.');
+    }
     const loader = document.getElementById('pageLoader');
     if (loader){
       loader.classList.remove('hide');
@@ -169,10 +238,14 @@ let toastTimer;
 function showToast(msg){
   const toastEl = document.getElementById('toast');
   if (!toastEl) return;
-  toastEl.textContent = msg;
-  toastEl.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2400);
+  toastEl.textContent = msg;
+  toastEl.classList.remove('show');
+  requestAnimationFrame(() => toastEl.classList.add('show'));
+  toastTimer = setTimeout(() => {
+    toastEl.classList.remove('show');
+    toastEl.textContent = '';
+  }, 2400);
 }
 
 /* ---------- falling sakura petals (SVG-based) ---------- */
@@ -196,7 +269,7 @@ function initPetals(){
     { fill: '#fadce9', edge: '#e88bb2' }
   ];
 
-  const COUNT = window.innerWidth < 720 ? 16 : 28;
+  const COUNT = window.innerWidth < 720 ? 9 : 18;
   for (let i = 0; i < COUNT; i++){
     const petal = document.createElement('div');
     petal.className = 'petal';
@@ -224,12 +297,14 @@ function initStarfield(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
+  if (document.documentElement.getAttribute('data-theme') === 'light') return;
+
   const field = document.createElement('div');
   field.className = 'star-field';
   field.id = 'starField';
   document.body.prepend(field);
 
-  const COUNT = window.innerWidth < 720 ? 45 : 80;
+  const COUNT = window.innerWidth < 720 ? 20 : 42;
   for (let i = 0; i < COUNT; i++){
     const star = document.createElement('div');
     star.className = 'star';
@@ -254,12 +329,12 @@ function initStarfield(){
   }
   function scheduleShootingStar(){
     const delay = 4500 + Math.random() * 6000;
-    setTimeout(() => { launchShootingStar(); scheduleShootingStar(); }, delay);
+    setTimeout(() => { if (!document.hidden) launchShootingStar(); scheduleShootingStar(); }, delay);
   }
   scheduleShootingStar();
 }
 
-/* ---------- click burst: a playful pink hit effect wherever you click on the page ---------- */
+/* ---------- click FX: a soft burst of sakura petals wherever you click ---------- */
 function initClickFX(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
@@ -268,36 +343,89 @@ function initClickFX(){
   fx.id = 'clickFX';
   document.body.appendChild(fx);
 
+  const petalColors = ['#f0a8c4', '#f7c4da', '#e88bb2', '#fadce9'];
+
   document.addEventListener('click', (e) => {
     const x = e.clientX, y = e.clientY;
-    if (x === 0 && y === 0) return; // keyboard-triggered clicks
+    if (x === 0 && y === 0) return;
 
-    const burst = document.createElement('div');
-    burst.className = 'click-burst';
-    burst.style.left = x + 'px'; burst.style.top = y + 'px';
-    fx.appendChild(burst);
+    const pop = document.createElement('div');
+    pop.className = 'hit-pop';
+    pop.style.left = x + 'px'; pop.style.top = y + 'px';
+    fx.appendChild(pop);
 
-    const ring = document.createElement('div');
-    ring.className = 'click-ring';
-    ring.style.left = x + 'px'; ring.style.top = y + 'px';
-    fx.appendChild(ring);
-
-    const sparkCount = 6;
-    for (let i = 0; i < sparkCount; i++){
-      const spark = document.createElement('div');
-      spark.className = 'click-spark';
-      const angle = (Math.PI * 2 * i) / sparkCount + Math.random() * 0.5;
-      const dist = 22 + Math.random() * 26;
-      spark.style.left = x + 'px'; spark.style.top = y + 'px';
-      spark.style.setProperty('--sx', (Math.cos(angle) * dist).toFixed(0) + 'px');
-      spark.style.setProperty('--sy', (Math.sin(angle) * dist).toFixed(0) + 'px');
-      fx.appendChild(spark);
+    // PERF/BUG FIX: this click burst used to remove *every* ".hit-petal" currently
+    // in the DOM when its own timeout fired — including petals spawned by a later,
+    // still-mid-animation click. On quick successive clicks (or on already-slower
+    // pages), that wiped out the newer burst's petals early, so the animation looked
+    // like it "stopped working" for that click. Now each burst only ever removes the
+    // exact elements it created, so bursts no longer interrupt each other.
+    const petalCount = 4;
+    const thisBurstPetals = [];
+    for (let i = 0; i < petalCount; i++){
+      const petal = document.createElement('div');
+      petal.className = 'hit-petal';
+      const angle = (Math.PI * 2 * i) / petalCount + Math.random() * 0.6;
+      const dist = 20 + Math.random() * 22;
+      petal.style.left = x + 'px'; petal.style.top = y + 'px';
+      petal.style.setProperty('--petal-color', petalColors[Math.floor(Math.random() * petalColors.length)]);
+      petal.style.setProperty('--sx', (Math.cos(angle) * dist).toFixed(0) + 'px');
+      petal.style.setProperty('--sy', (Math.sin(angle) * dist + 14).toFixed(0) + 'px');
+      petal.style.setProperty('--start-rot', Math.floor(Math.random() * 360) + 'deg');
+      petal.style.setProperty('--end-rot', Math.floor(180 + Math.random() * 260) + 'deg');
+      fx.appendChild(petal);
+      thisBurstPetals.push(petal);
     }
 
     setTimeout(() => {
-      burst.remove(); ring.remove();
-      fx.querySelectorAll('.click-spark').forEach(s => s.remove());
-    }, 650);
+      pop.remove();
+      thisBurstPetals.forEach(el => el.remove());
+    }, 800);
+  });
+}
+
+/* ---------- click the hero tree: give it a little shake and shed a few petals ---------- */
+function initTreeShed(){
+  const hitArea = document.getElementById('treeHitArea');
+  const tree = document.querySelector('.tree-sway');
+  const shedField = document.getElementById('treeShed');
+  if (!hitArea || !shedField) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const petalColors = ['#f0a8c4', '#f7c4da', '#e88bb2', '#fadce9'];
+  let shaking = false;
+
+  hitArea.addEventListener('click', () => {
+    if (tree && !reduceMotion && !shaking){
+      shaking = true;
+      tree.classList.add('shaking');
+      setTimeout(() => { tree.classList.remove('shaking'); shaking = false; }, 500);
+    }
+    if (reduceMotion) return;
+
+    const host = shedField.closest('.hero-art');
+    const w = host ? host.clientWidth : 420;
+    const scale = w / 420; // svg viewBox is 420 wide; convert canopy coords to real px
+
+    const count = 10 + Math.floor(Math.random() * 5);
+    for (let i = 0; i < count; i++){
+      const petal = document.createElement('div');
+      petal.className = 'shed-petal';
+      const startX = (110 + Math.random() * 190) * scale;
+      const startY = (70 + Math.random() * 170) * scale;
+      petal.style.left = startX + 'px';
+      petal.style.top = startY + 'px';
+      petal.style.setProperty('--petal-color', petalColors[Math.floor(Math.random() * petalColors.length)]);
+      petal.style.setProperty('--sx1', (Math.random() * 60 - 30).toFixed(0) + 'px');
+      petal.style.setProperty('--sy1', (60 + Math.random() * 50).toFixed(0) + 'px');
+      petal.style.setProperty('--rot1', Math.floor(80 + Math.random() * 160) + 'deg');
+      petal.style.setProperty('--sx2', (Math.random() * 90 - 45).toFixed(0) + 'px');
+      petal.style.setProperty('--sy2', (150 + Math.random() * 110).toFixed(0) + 'px');
+      petal.style.setProperty('--rot2', Math.floor(220 + Math.random() * 260) + 'deg');
+      petal.style.setProperty('--fall-dur', (1.8 + Math.random() * 1.3).toFixed(1) + 's');
+      shedField.appendChild(petal);
+      setTimeout(() => petal.remove(), 3300);
+    }
   });
 }
 
@@ -308,6 +436,7 @@ function initDonateSparkles(){
   if (!wrap || reduceMotion) return;
 
   function spawnSparkle(){
+    if (document.hidden) return;
     const rect = wrap.getBoundingClientRect();
     const dot = document.createElement('div');
     dot.className = 'donate-sparkle';
@@ -320,7 +449,11 @@ function initDonateSparkles(){
     document.body.appendChild(dot);
     setTimeout(() => dot.remove(), 1650);
   }
-  setInterval(spawnSparkle, 900);
+  // Recursive timer avoids keeping a permanent interval active in background tabs.
+  function scheduleSparkle(){
+    setTimeout(() => { spawnSparkle(); scheduleSparkle(); }, document.hidden ? 2200 : 1300);
+  }
+  scheduleSparkle();
 }
 
 /* ---------- auth page: animated sliding tab indicator + form switch ---------- */
@@ -351,3 +484,59 @@ function initAuthTabs(){
     });
   });
 }
+
+
+/* ---------- mobile card hover bridge ----------
+   Keeps the exact desktop hover visuals on touch devices without :active.
+   The same class is added/removed, so CSS transitions handle both directions. */
+function initCardHoverTouch(){
+  if (!window.matchMedia || !window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+  const cards = document.querySelectorAll('.feature-box, .mode-card, .launcher-card');
+  if (!cards.length) return;
+
+  const clear = () => cards.forEach(card => card.classList.remove('hover-touch'));
+  cards.forEach(card => {
+    card.addEventListener('touchstart', () => {
+      clear();
+      card.classList.add('hover-touch');
+    }, {passive:true});
+    card.addEventListener('touchend', () => card.classList.remove('hover-touch'), {passive:true});
+    card.addEventListener('touchcancel', () => card.classList.remove('hover-touch'), {passive:true});
+  });
+  window.addEventListener('scroll', clear, {passive:true});
+  document.addEventListener('visibilitychange', () => { if (document.hidden) clear(); });
+}
+
+
+/* ---------- FAQ + feedback ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      faqItems.forEach(other => { if (other !== item) other.open = false; });
+    });
+  });
+
+  const feedbackForm = document.getElementById('feedbackForm');
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const type = document.getElementById('feedbackType')?.value || 'بازخورد';
+      const name = document.getElementById('feedbackName')?.value.trim() || 'بازیکن';
+      const message = document.getElementById('feedbackMessage')?.value.trim() || '';
+      if (!message) return;
+      const feedback = { type, name, message, createdAt: new Date().toISOString() };
+      try {
+        const saved = JSON.parse(localStorage.getItem('zyran_feedback') || '[]');
+        saved.push(feedback);
+        localStorage.setItem('zyran_feedback', JSON.stringify(saved.slice(-20)));
+      } catch (err) {}
+      feedbackForm.reset();
+      if (typeof showToast === 'function') {
+        showToast('بازخوردت ثبت شد 🌸 ممنون که برای بهتر شدن زیران کمک می‌کنی');
+      }
+    });
+  }
+});
+
