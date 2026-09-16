@@ -1552,33 +1552,63 @@ body{padding-top:78px;}
 .mobile-overlay{z-index:105 !important;}
 .mobile-nav{z-index:110 !important;}
 
-/* V27 — Feedback form polish: dark/light dropdown + themed scrollbar */
-.feedback-form select{
-  appearance:none;
-  -webkit-appearance:none;
-  padding-left:44px;
-  color:var(--cream);
-  color-scheme:dark;
-  background-color:var(--navy-soft);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c9c0ba' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:left 13px center;
-  background-size:18px;
+/* V29 — Keep normal text on the standard arrow cursor. Interactive controls keep their expected cursor. */
+body, body * { cursor: default; }
+a, button, [role="button"], summary,
+input[type="button"], input[type="submit"], input[type="reset"], select { cursor: pointer; }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"],
+input[type="search"], input[type="tel"], input[type="url"], textarea,
+[contenteditable="true"] { cursor: text; }
+/* V30 — Light theme visibility fixes: keep theme icons and Sakura brand bloom visible on every page. */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon{
+  stroke:currentColor !important;
+  color:var(--cream) !important;
+  fill:none !important;
+  pointer-events:none;
 }
-.feedback-form select option{
-  background:var(--navy-soft);
-  color:var(--cream);
+html[data-theme="light"] .theme-toggle .icon-sun{
+  opacity:1 !important;
+  visibility:visible !important;
+  transform:rotate(0) scale(1) !important;
 }
-html[data-theme="light"] .feedback-form select{
-  color-scheme:light;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23666c80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+html[data-theme="light"] .theme-toggle .icon-moon{
+  opacity:0 !important;
+  visibility:hidden !important;
 }
-html[data-theme="light"] .feedback-form select option{
-  background:#f1ece3;
-  color:#2a2f3d;
+html[data-theme="light"] .brand-bloom{
+  opacity:1 !important;
+  visibility:visible !important;
+  display:block !important;
+}
+.brand-bloom{
+  flex:0 0 auto;
+  overflow:visible;
 }
 
-/* Site-wide custom scrollbar — Zyran palette */
+
+/* V31 — unify header with home + restore custom scrollbar */
+@media (min-width:1101px){
+  /* Desktop header ends at «فروشگاه»; secondary items remain in drawer. */
+  .nav-links li:nth-child(n+7){display:none !important;}
+  .nav-links{display:flex !important;}
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .header-auth-btn{display:inline-flex !important;order:3;}
+  .burger{order:4;}
+  .theme-toggle{order:1;}
+  .cart-btn{order:2;}
+}
+
+/* Keep the auth CTA immediately beside the menu button on desktop/tablet. */
+@media (min-width:721px){
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .header-auth-btn{order:3 !important;}
+  .burger{order:4 !important;}
+  .theme-toggle{order:1 !important;}
+  .cart-btn{order:2 !important;}
+}
+
+/* Site-wide custom scrollbar — restored Zyran palette */
 html{
   scrollbar-width:thin;
   scrollbar-color:var(--sakura-deep) var(--navy-soft);
