@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#171a26"/>
+      <stop offset="1" stop-color="#2a2f47"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#f0a8c4" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#f0a8c4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="220" cy="120" r="360" fill="url(#glow)"/>
+  <circle cx="1050" cy="570" r="390" fill="url(#glow)" opacity=".55"/>
+  <g transform="translate(600 196)">
+    <path d="M0 0C-3-65-38-110-88-126c-12 50 8 103 64 137Z" fill="#f0a8c4"/>
+    <path d="M0 0C-3-65-38-110-88-126c-12 50 8 103 64 137Z" fill="#e88bb2" transform="rotate(72)"/>
+    <path d="M0 0C-3-65-38-110-88-126c-12 50 8 103 64 137Z" fill="#f0a8c4" transform="rotate(144)"/>
+    <path d="M0 0C-3-65-38-110-88-126c-12 50 8 103 64 137Z" fill="#e88bb2" transform="rotate(216)"/>
+    <path d="M0 0C-3-65-38-110-88-126c-12 50 8 103 64 137Z" fill="#f0a8c4" transform="rotate(288)"/>
+    <circle r="28" fill="#8a6248"/>
+  </g>
+  <text x="600" y="390" text-anchor="middle" fill="#f2e9e0" font-size="78" font-weight="800" font-family="Arial, sans-serif" letter-spacing="8">ZYRAN.IR</text>
+  <text x="600" y="460" text-anchor="middle" fill="#f0a8c4" font-size="32" font-family="Arial, sans-serif">MINECRAFT COMMUNITY</text>
+  <text x="600" y="535" text-anchor="middle" fill="#c9c0ba" font-size="27" font-family="Arial, sans-serif">ساختن یک دنیای تازه، زیر شکوفه‌های گیلاس</text>
+</svg>
