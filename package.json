@@ -1,0 +1,16 @@
+{
+  "name": "zyran-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check:site": "node scripts/check-site.mjs",
+    "check:html": "html-validate \"*.html\"",
+    "check:js": "node --check assets/config.js && node --check assets/api.js && node --check assets/downloads.js && node --check assets/main.js && node --check assets/cart.js",
+    "test:backend": "npm --prefix backend test",
+    "test": "npm run check:site && npm run check:html && npm run check:js && npm run test:backend"
+  },
+  "devDependencies": {
+    "html-validate": "^10.17.0"
+  }
+}

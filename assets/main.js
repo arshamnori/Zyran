@@ -1,166 +1,304 @@
+const ZYRAN_CONFIG = window.ZYRAN_CONFIG || { features: {}, server: {}, links: {} };
+
 document.addEventListener('DOMContentLoaded', () => {
-  /* BUG FIX: this whole setup block now runs inside a try/catch. Previously, if any one
-     piece here threw on a given page, every line after it — including the init functions
-     below (page transitions, click-burst animation, etc.) — would silently never run on
-     that page, since one uncaught error stops the rest of this callback. */
-  try{
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
-    hideLoader();
-
-    /* ---------- dark / light theme ---------- */
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle){
-      themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-        const next = current === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', next);
-        try{ localStorage.setItem('zyran_theme', next); }catch(e){}
-      });
-    }
-
-    /* ---------- mobile nav ---------- */
-    const burgerBtn = document.getElementById('burgerBtn');
-    const mobileNav = document.getElementById('mobileNav');
-    const mobileOverlay = document.getElementById('mobileOverlay');
-    const mobileClose = document.getElementById('mobileClose');
-
-    // Keep the mobile menu identical on every page. Missing/old links are repaired here.
-    if (mobileNav) {
-      const currentHref = location.pathname.split('/').pop() || 'index.html';
-      const menuItems = [
-        ['index.html','خانه'],
-        ['modes.html','حالت‌های بازی'],
-        ['downloads.html','دانلودها'],
-        ['guide.html','راهنما'],
-        ['about.html','درباره ما'],
-        ['shop.html','فروشگاه'],
-        ['donate.html','حمایت از سرور']
-      ];
-      menuItems.forEach(([href,label]) => {
-        let a = mobileNav.querySelector(`a[href="${href}"]`);
-        if (!a) { a = document.createElement('a'); a.href = href; mobileNav.appendChild(a); }
-        a.textContent = label;
-        a.classList.toggle('current', href === currentHref);
-      });
-      let auth = mobileNav.querySelector('a.btn-auth');
-      if (!auth) {
-        auth = document.createElement('a');
-        auth.className='btn-auth';
-        auth.href='login.html';
-        auth.textContent='ورود / ثبت‌نام';
-        auth.style.textAlign='center';
-        const head = mobileNav.querySelector('.mobile-nav-head');
-        if (head && head.nextSibling) mobileNav.insertBefore(auth, head.nextSibling);
-        else mobileNav.appendChild(auth);
-      }
-      auth.href='login.html'; auth.textContent='ورود / ثبت‌نام'; auth.style.textAlign='center';
-    }
-    const openMobile = () => { mobileNav.classList.add('open'); mobileOverlay.classList.add('open'); };
-    const closeMobile = () => { mobileNav.classList.remove('open'); mobileOverlay.classList.remove('open'); };
-    if (burgerBtn) burgerBtn.addEventListener('click', openMobile);
-    if (mobileClose) mobileClose.addEventListener('click', closeMobile);
-    if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobile);
-    if (mobileNav) mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobile));
-
-    /* ---------- copy IP ---------- */
-    const copyBtn = document.getElementById('copyBtn');
-    if (copyBtn) {
-      const copyLabel = document.getElementById('copyLabel');
-      copyBtn.addEventListener('click', async () => {
-        const ip = document.getElementById('ipText').textContent.trim();
-        try{
-          await navigator.clipboard.writeText(ip);
-        }catch(e){
-          const ta = document.createElement('textarea');
-          ta.value = ip; document.body.appendChild(ta); ta.select();
-          document.execCommand('copy'); document.body.removeChild(ta);
-        }
-        copyBtn.classList.add('copied');
-        copyLabel.textContent = 'کپی شد ✓';
-        showToast('آی‌پی سرور کپی شد: ' + ip);
-        setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'کپی آی‌پی'; }, 2000);
-      });
-    }
-
-    /* ---------- fake online counter (DEMO ONLY) ----------
-       برای عدد واقعی باید از API بک‌اند بخش status استفاده کنیم، مثل:
-       fetch('https://api.zyran.ir/status').then(r=>r.json()).then(d => onlineVal = d.players_online)
-       الان فقط شبیه‌سازی شده تا شکل سایت مشخص باشه. */
-    const onlineEl = document.getElementById('onlineCount');
-    if (onlineEl) {
-      let onlineVal = 60 + Math.floor(Math.random()*40);
-      const render = () => { onlineEl.textContent = onlineVal; };
-      render();
-      setInterval(() => {
-        onlineVal = Math.max(20, Math.min(190, onlineVal + (Math.floor(Math.random()*7) - 3)));
-        render();
-      }, 4000);
-    }
-  }catch(err){ console.error('[zyran] header/nav setup failed:', err); }
-
-  /* BUG FIX: these used to be called back-to-back with no error handling. If any single
-     init function threw on a given page (e.g. a page missing an element another one
-     assumed was there), every init call after it in this list — including the click-burst
-     animation and the page-transition/logo-launch click handler — would silently never run
-     on that page, since one uncaught error stops the rest of this function. Running each one
-     independently means a problem in one feature can no longer take out the others. */
-  const inits = [
-    initPetals, initAuthState, initScrollReveal, initPageTransitions,
-    initStarfield, initClickFX, initTreeShed, initDonateSparkles, initAuthTabs, initCardHoverTouch
+  const initializers = [
+    hideLoader,
+    initTheme,
+    initMobileNav,
+    initConfiguredLinks,
+    initCopyServerAddress,
+    initServerStatus,
+    initPetals,
+    initAuthState,
+    initScrollReveal,
+    initStarfield,
+    initClickFX,
+    initTreeShed,
+    initDonateSparkles,
+    initAuthTabs,
+    initCardHoverTouch
   ];
-  inits.forEach(fn => {
-    try{ fn(); }catch(err){ console.error('[zyran]', fn.name, 'failed to init:', err); }
+
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
+
+  initializers.forEach(fn => {
+    try {
+      const result = fn();
+      if (result && typeof result.catch === 'function') {
+        result.catch(err => console.error('[zyran]', fn.name, 'failed:', err));
+      }
+    } catch (err) {
+      console.error('[zyran]', fn.name, 'failed:', err);
+    }
   });
 });
 
-/* ---------- logged-in / admin nav state ----------
-   بعد از ورود موفق، login.html توکن رو در localStorage با کلید zyran_token
-   و نقش کاربر رو با کلید zyran_role ذخیره می‌کنه. اینجا فقط همون مقدار رو
-   می‌خونیم تا رابط کاربری رو بروز کنیم؛ دسترسی واقعی ادمین همیشه سمت
-   بک‌اند با همون توکن چک می‌شه، نه اینجا. */
-function initAuthState(){
-  const token = localStorage.getItem('zyran_token');
-  const role = localStorage.getItem('zyran_role');
-  const username = localStorage.getItem('zyran_username');
+function hideLoader(){
+  const loader = document.getElementById('pageLoader');
+  if (loader) requestAnimationFrame(() => loader.classList.add('hide'));
+}
 
-  if (token) {
-    document.querySelectorAll('.btn-auth').forEach(btn => {
-      btn.textContent = username ? username : 'حساب من';
-      btn.setAttribute('href', role === 'admin' ? 'admin.html' : 'account.html');
-    });
-  }
+function initTheme(){
+  const themeToggle = document.getElementById('themeToggle');
+  if (!themeToggle) return;
+  themeToggle.setAttribute('aria-pressed', document.documentElement.dataset.theme === 'light' ? 'true' : 'false');
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    themeToggle.setAttribute('aria-pressed', next === 'light' ? 'true' : 'false');
+    try { localStorage.setItem('zyran_theme', next); } catch (_) {}
+  });
+}
 
-  if (role === 'admin') {
-    const navLinks = document.querySelector('.nav-links');
-    const mobileNav = document.getElementById('mobileNav');
-    if (navLinks && !navLinks.querySelector('a[href="admin.html"]')) {
-      const li = document.createElement('li');
-      li.innerHTML = '<a href="admin.html">پنل ادمین</a>';
-      navLinks.appendChild(li);
-    }
-    if (mobileNav && !mobileNav.querySelector('a[href="admin.html"]')) {
-      const a = document.createElement('a');
-      a.href = 'admin.html';
-      a.textContent = 'پنل ادمین';
-      mobileNav.insertBefore(a, mobileNav.querySelector('.btn-auth'));
-    }
+function getFocusable(container){
+  return Array.from(container.querySelectorAll(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )).filter(el => !el.hidden && el.getAttribute('aria-hidden') !== 'true');
+}
+
+function trapFocus(event, container){
+  if (event.key !== 'Tab') return;
+  const items = getFocusable(container);
+  if (!items.length) return;
+  const first = items[0];
+  const last = items[items.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
   }
 }
 
-/* ---------- sakura page loader ---------- */
-function hideLoader(){
-  const loader = document.getElementById('pageLoader');
-  if (!loader) return;
-  const MIN_VISIBLE_MS = 500;
-  const start = Date.now();
-  const finish = () => {
-    const elapsed = Date.now() - start;
-    const wait = Math.max(0, MIN_VISIBLE_MS - elapsed);
-    setTimeout(() => loader.classList.add('hide'), wait);
+function syncBodyLock(){
+  const hasOpenDrawer = document.querySelector('.mobile-nav.open, .cart-drawer.open');
+  document.body.classList.toggle('menu-open', Boolean(hasOpenDrawer));
+}
+
+function initMobileNav(){
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  if (!burgerBtn || !mobileNav) return;
+
+  let mobileOverlay = document.getElementById('mobileOverlay');
+  if (!mobileOverlay) {
+    mobileOverlay = document.createElement('div');
+    mobileOverlay.className = 'mobile-overlay';
+    mobileOverlay.id = 'mobileOverlay';
+    document.body.insertBefore(mobileOverlay, mobileNav);
+  }
+
+  const currentHref = location.pathname.split('/').pop() || 'index.html';
+  const menuItems = [
+    ['index.html', 'خانه'],
+    ['modes.html', 'حالت‌های بازی'],
+    ['downloads.html', 'دانلودها'],
+    ['guide.html', 'راهنما'],
+    ['about.html', 'درباره ما'],
+    ['shop.html', 'فروشگاه'],
+    ['donate.html', 'حمایت از سرور'],
+    ['telegram-bot.html', 'بات تلگرامی'],
+    ['index.html#faq', 'سؤالات متداول'],
+    ['index.html#feedback', 'انتقادات و پیشنهادات']
+  ];
+  menuItems.forEach(([href, label]) => {
+    let link = mobileNav.querySelector(`a[href="${href}"]`);
+    if (!link) {
+      link = document.createElement('a');
+      link.href = href;
+      mobileNav.appendChild(link);
+    }
+    link.textContent = label;
+    link.classList.toggle('current', href.split('#')[0] === currentHref && !href.includes('#'));
+  });
+
+  let auth = mobileNav.querySelector('a.btn-auth');
+  if (!auth) {
+    auth = document.createElement('a');
+    auth.className = 'btn-auth';
+    auth.href = 'login.html';
+    const head = mobileNav.querySelector('.mobile-nav-head');
+    head?.insertAdjacentElement('afterend', auth);
+  }
+  auth.textContent = ZYRAN_CONFIG.features?.auth ? 'ورود / ثبت‌نام' : 'حساب کاربری — به‌زودی';
+
+  burgerBtn.setAttribute('aria-controls', mobileNav.id);
+  burgerBtn.setAttribute('aria-expanded', 'false');
+  mobileNav.setAttribute('role', 'dialog');
+  mobileNav.setAttribute('aria-modal', 'true');
+  mobileNav.setAttribute('aria-label', 'منوی سایت');
+  mobileNav.setAttribute('aria-hidden', 'true');
+  mobileNav.inert = true;
+  let returnFocus = burgerBtn;
+
+  const open = () => {
+    returnFocus = document.activeElement;
+    mobileNav.inert = false;
+    mobileNav.classList.add('open');
+    mobileOverlay.classList.add('open');
+    mobileNav.setAttribute('aria-hidden', 'false');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    syncBodyLock();
+    requestAnimationFrame(() => (mobileClose || getFocusable(mobileNav)[0])?.focus());
   };
-  if (document.readyState === 'complete') finish();
-  else window.addEventListener('load', finish);
+  const close = () => {
+    mobileNav.classList.remove('open');
+    mobileOverlay.classList.remove('open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    mobileNav.inert = true;
+    syncBodyLock();
+    if (returnFocus instanceof HTMLElement) returnFocus.focus();
+  };
+
+  burgerBtn.addEventListener('click', open);
+  mobileClose?.addEventListener('click', close);
+  mobileOverlay.addEventListener('click', close);
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+  mobileNav.addEventListener('keydown', event => trapFocus(event, mobileNav));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileNav.classList.contains('open')) close();
+  });
+}
+
+function disableConfiguredLink(link, message){
+  link.removeAttribute('href');
+  link.removeAttribute('target');
+  link.setAttribute('aria-disabled', 'true');
+  link.setAttribute('tabindex', '-1');
+  link.classList.add('is-disabled');
+  link.title = message;
+}
+
+function initConfiguredLinks(){
+  const links = ZYRAN_CONFIG.links || {};
+  document.querySelectorAll('[data-social="telegram"]').forEach(link => {
+    if (ZYRAN_CONFIG.features?.telegram && links.telegramChannel) {
+      link.href = links.telegramChannel;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    } else disableConfiguredLink(link, 'لینک تلگرام پس از راه‌اندازی اضافه می‌شود.');
+  });
+  document.querySelectorAll('[data-social="discord"]').forEach(link => {
+    if (ZYRAN_CONFIG.features?.discord && links.discord) {
+      link.href = links.discord;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    } else disableConfiguredLink(link, 'لینک دیسکورد پس از راه‌اندازی اضافه می‌شود.');
+  });
+  document.querySelectorAll('[data-config-link]').forEach(link => {
+    const key = link.dataset.configLink;
+    const url = links[key];
+    const enabled = key === 'donation'
+      ? ZYRAN_CONFIG.features?.donations
+      : key === 'telegramBot'
+        ? ZYRAN_CONFIG.features?.telegram
+        : true;
+    if (enabled && url) {
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.removeAttribute('aria-disabled');
+      link.removeAttribute('tabindex');
+      link.classList.remove('is-disabled');
+      if (link.dataset.readyLabel) link.textContent = link.dataset.readyLabel;
+    } else disableConfiguredLink(link, 'این سرویس هنوز راه‌اندازی نشده است.');
+  });
+}
+
+function initCopyServerAddress(){
+  const copyBtn = document.getElementById('copyBtn');
+  const ipText = document.getElementById('ipText');
+  const copyLabel = document.getElementById('copyLabel');
+  if (!copyBtn || !ipText) return;
+
+  const address = ZYRAN_CONFIG.server?.ready ? ZYRAN_CONFIG.server.address : '';
+  if (!address) {
+    ipText.textContent = 'آدرس پس از راه‌اندازی اعلام می‌شود';
+    copyLabel.textContent = 'به‌زودی';
+    copyBtn.disabled = true;
+    copyBtn.setAttribute('aria-disabled', 'true');
+    return;
+  }
+
+  ipText.textContent = address;
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(address);
+    } catch (_) {
+      const input = document.createElement('textarea');
+      input.value = address;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }
+    copyBtn.classList.add('copied');
+    copyLabel.textContent = 'کپی شد ✓';
+    showToast('آدرس سرور کپی شد: ' + address);
+    setTimeout(() => {
+      copyBtn.classList.remove('copied');
+      copyLabel.textContent = 'کپی آدرس';
+    }, 2000);
+  });
+}
+
+async function initServerStatus(){
+  const onlineEl = document.getElementById('onlineCount');
+  const badge = document.querySelector('.eyebrow-badge');
+  if (!onlineEl && !badge) return;
+
+  const render = status => {
+    const online = Boolean(status?.online);
+    if (onlineEl) {
+      onlineEl.textContent = online ? Number(status.playersOnline || 0).toLocaleString('fa-IR') : 'آفلاین';
+      const label = onlineEl.closest('.meta-item')?.querySelector('.lbl');
+      if (label) label.textContent = online ? `بازیکن از ${status.maxPlayers || ZYRAN_CONFIG.server?.maxPlayers || 0}` : 'وضعیت فعلی سرور';
+    }
+    if (badge) {
+      badge.classList.toggle('is-offline', !online);
+      const dot = document.createElement('span');
+      dot.className = 'dot';
+      badge.replaceChildren(dot, document.createTextNode(
+        online ? 'سرور روشن است — همین حالا وصل شو' : 'سرور در حال راه‌اندازی است'
+      ));
+    }
+  };
+
+  if (!ZYRAN_CONFIG.server?.ready || !ZYRAN_CONFIG.features?.serverStatus || !window.ZyranAPI) {
+    render({ online: false });
+    return;
+  }
+  try {
+    render(await window.ZyranAPI.status());
+  } catch (_) {
+    render({ online: false });
+  }
+}
+
+async function initAuthState(){
+  if (!ZYRAN_CONFIG.features?.auth || !window.ZyranAPI) return;
+  try {
+    const me = await window.ZyranAPI.me();
+    document.querySelectorAll('.btn-auth').forEach(btn => {
+      btn.textContent = me.username || 'حساب من';
+      btn.setAttribute('href', me.role === 'admin' ? 'admin.html' : 'account.html');
+    });
+    if (me.role === 'admin') {
+      const mobileNav = document.getElementById('mobileNav');
+      if (mobileNav && !mobileNav.querySelector('a[href="admin.html"]')) {
+        const link = document.createElement('a');
+        link.href = 'admin.html';
+        link.textContent = 'پنل ادمین';
+        mobileNav.appendChild(link);
+      }
+    }
+  } catch (_) {
+    /* A missing session is the normal signed-out state. */
+  }
 }
 
 /* ---------- scroll reveal: elements fade/slide in as they enter the viewport ---------- */
@@ -198,41 +336,6 @@ function initScrollReveal(){
   els.forEach(el => observer.observe(el));
 }
 
-/* ---------- logo "launch" shortcut: try to open the local Minecraft launcher ----------
-   Best-effort only: browsers can't force-launch a specific third-party app like TLauncher —
-   only apps that register their own protocol can be opened this way. TLauncher itself doesn't
-   register a dedicated scheme, so this uses the standard "minecraft://" protocol, which the
-   official Minecraft Launcher (and some TLauncher setups) register on install. If nothing is
-   registered, the browser just ignores it silently and the click still navigates home normally. */
-function tryOpenLauncher(){
-  try{ window.location.href = 'minecraft://'; }catch(e){}
-}
-
-/* ---------- page transitions: reuse the sakura loader as a bridge between pages ---------- */
-function initPageTransitions(){
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a[href$=".html"]');
-    if (!link) return;
-    if (link.target === '_blank' || link.hasAttribute('download')) return;
-    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-
-    e.preventDefault();
-    const destination = link.href;
-    const isBrand = !!link.closest('.brand');
-    if (isBrand){
-      tryOpenLauncher();
-      showToast('در حال تلاش برای باز کردن لانچر ماینکرفت... 🌸 اگه لانچرت (مثل TLauncher) نصب باشه باز می‌شه، وگرنه فقط میری صفحه‌ی اصلی.');
-    }
-    const loader = document.getElementById('pageLoader');
-    if (loader){
-      loader.classList.remove('hide');
-      setTimeout(() => { window.location.href = destination; }, 420);
-    } else {
-      window.location.href = destination;
-    }
-  });
-}
-
 /* ---------- toast (global helper) ---------- */
 let toastTimer;
 function showToast(msg){
@@ -260,7 +363,7 @@ function initPetals(){
   const field = document.getElementById('petals');
   if (!field) return;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+  if (reduceMotion || window.innerWidth <= 720) return;
 
   const colors = [
     { fill: '#f0a8c4', edge: '#d6789f' },
@@ -295,7 +398,7 @@ function initPetals(){
 /* ---------- cosmic starfield: twinkling stars + occasional shooting star ---------- */
 function initStarfield(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+  if (reduceMotion || window.innerWidth <= 720) return;
 
   if (document.documentElement.getAttribute('data-theme') === 'light') return;
 
@@ -337,7 +440,7 @@ function initStarfield(){
 /* ---------- click FX: a soft burst of sakura petals wherever you click ---------- */
 function initClickFX(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+  if (reduceMotion || window.innerWidth <= 720) return;
 
   const fx = document.createElement('div');
   fx.id = 'clickFX';
@@ -390,7 +493,7 @@ function initTreeShed(){
   const tree = document.querySelector('.tree-sway');
   const shedField = document.getElementById('treeShed');
   if (!hitArea || !shedField) return;
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth <= 720;
 
   const petalColors = ['#f0a8c4', '#f7c4da', '#e88bb2', '#fadce9'];
   let shaking = false;
@@ -433,7 +536,7 @@ function initTreeShed(){
 function initDonateSparkles(){
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const wrap = document.querySelector('.float-donate-wrap');
-  if (!wrap || reduceMotion) return;
+  if (!wrap || reduceMotion || window.innerWidth <= 720) return;
 
   function spawnSparkle(){
     if (document.hidden) return;
@@ -460,27 +563,48 @@ function initDonateSparkles(){
 function initAuthTabs(){
   const tabsWrap = document.querySelector('.auth-tabs');
   const indicator = document.getElementById('authTabIndicator');
-  const tabs = document.querySelectorAll('.auth-tab');
-  const forms = document.querySelectorAll('.auth-form');
+  const tabs = Array.from(document.querySelectorAll('.auth-tab'));
+  const forms = Array.from(document.querySelectorAll('.auth-form'));
   if (!tabsWrap || !tabs.length) return;
 
-  function setIndicator(activeTab){
-    if (!indicator) return;
-    const isSecond = Array.from(tabs).indexOf(activeTab) === 1;
-    indicator.classList.toggle('pos-1', isSecond);
+  tabsWrap.setAttribute('role', 'tablist');
+  tabsWrap.setAttribute('aria-label', 'ورود یا ثبت‌نام');
+
+  function activate(activeTab, moveFocus = false){
+    tabs.forEach((tab, index) => {
+      const active = tab === activeTab;
+      const target = document.getElementById(tab.dataset.form);
+      if (!tab.id) tab.id = `authTab${index}`;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-controls', tab.dataset.form);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      tab.tabIndex = active ? 0 : -1;
+      tab.classList.toggle('active', active);
+      if (target) {
+        target.setAttribute('role', 'tabpanel');
+        target.setAttribute('aria-labelledby', tab.id);
+        target.classList.toggle('active', active);
+        target.hidden = !active;
+      }
+    });
+    indicator?.classList.toggle('pos-1', tabs.indexOf(activeTab) === 1);
+    if (moveFocus) activeTab.focus();
   }
 
   const initialActive = document.querySelector('.auth-tab.active') || tabs[0];
-  setIndicator(initialActive);
+  activate(initialActive);
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      forms.forEach(f => f.classList.remove('active'));
-      tab.classList.add('active');
-      const target = document.getElementById(tab.dataset.form);
-      if (target) target.classList.add('active');
-      setIndicator(tab);
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = tabs.length - 1;
+      else if (event.key === 'ArrowRight') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      else nextIndex = (index + 1) % tabs.length;
+      activate(tabs[nextIndex], true);
     });
   });
 }
@@ -520,21 +644,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const feedbackForm = document.getElementById('feedbackForm');
   if (feedbackForm) {
-    feedbackForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const type = document.getElementById('feedbackType')?.value || 'بازخورد';
-      const name = document.getElementById('feedbackName')?.value.trim() || 'بازیکن';
-      const message = document.getElementById('feedbackMessage')?.value.trim() || '';
-      if (!message) return;
-      const feedback = { type, name, message, createdAt: new Date().toISOString() };
+    const submit = feedbackForm.querySelector('[type="submit"]');
+    if (!ZYRAN_CONFIG.features?.feedback) {
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'ارسال بازخورد — پس از راه‌اندازی';
+      }
+      feedbackForm.setAttribute('aria-describedby', 'feedbackAvailability');
+    }
+
+    feedbackForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!ZYRAN_CONFIG.features?.feedback || !window.ZyranAPI) {
+        showToast('سامانه بازخورد هنوز راه‌اندازی نشده است.');
+        return;
+      }
+
+      const payload = {
+        type: document.getElementById('feedbackType')?.value || 'بازخورد',
+        name: document.getElementById('feedbackName')?.value.trim() || '',
+        message: document.getElementById('feedbackMessage')?.value.trim() || ''
+      };
+      if (!payload.message) return;
+
+      if (submit) submit.disabled = true;
       try {
-        const saved = JSON.parse(localStorage.getItem('zyran_feedback') || '[]');
-        saved.push(feedback);
-        localStorage.setItem('zyran_feedback', JSON.stringify(saved.slice(-20)));
-      } catch (err) {}
-      feedbackForm.reset();
-      if (typeof showToast === 'function') {
-        showToast('بازخوردت ثبت شد 🌸 ممنون که برای بهتر شدن زیران کمک می‌کنی');
+        await window.ZyranAPI.submitFeedback(payload);
+        feedbackForm.reset();
+        showToast('بازخوردت با موفقیت برای تیم زیران ارسال شد 🌸');
+      } catch (error) {
+        showToast(error.message || 'ارسال بازخورد انجام نشد.');
+      } finally {
+        if (submit) submit.disabled = false;
       }
     });
   }

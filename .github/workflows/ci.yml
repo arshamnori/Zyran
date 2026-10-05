@@ -1,0 +1,33 @@
+name: Validate site and API
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            backend/package-lock.json
+      - name: Install frontend validation tools
+        run: npm ci
+      - name: Install backend tooling
+        run: npm ci --prefix backend
+      - name: Run static checks and unit tests
+        run: npm test
+      - name: Audit production dependencies
+        run: |
+          npm audit --omit=dev
+          npm audit --omit=dev --prefix backend

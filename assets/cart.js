@@ -1,127 +1,184 @@
-const CART_KEY = 'zyran_cart';
+(function () {
+  'use strict';
 
-function loadCart(){
-  try{
-    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  }catch(e){
-    return [];
+  const CART_KEY = 'zyran_cart_v2';
+  const config = window.ZYRAN_CONFIG || { features: {}, shopPacks: {} };
+  const catalog = config.shopPacks || {};
+
+  function loadCart(){
+    try {
+      const raw = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+      const ids = Array.isArray(raw) ? raw.map(item => typeof item === 'string' ? item : item?.id) : [];
+      return [...new Set(ids.filter(id => Object.hasOwn(catalog, id)))];
+    } catch (_) {
+      return [];
+    }
   }
-}
-function saveCart(cart){
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
-function faNum(n){ return n.toLocaleString('fa-IR'); }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cartCountEl = document.getElementById('cartCount');
-  const cartItemsEl = document.getElementById('cartItems');
-  const cartTotalEl = document.getElementById('cartTotal');
-  const cartDrawer = document.getElementById('cartDrawer');
-  const cartOpenBtn = document.getElementById('cartOpen');
-  const cartCloseBtn = document.getElementById('cartClose');
-  const checkoutBtn = document.getElementById('checkoutBtn');
+  function saveCart(ids){
+    try { localStorage.setItem(CART_KEY, JSON.stringify(ids)); } catch (_) {}
+  }
 
-  function render(){
-    const cart = loadCart();
-    if (cartCountEl) cartCountEl.textContent = cart.length;
-    if (cartItemsEl){
-      if (cart.length === 0){
-        cartItemsEl.innerHTML = '<p class="cart-empty">سبد خریدت خالیه، یک پک انتخاب کن 🌸</p>';
-      } else {
-        cartItemsEl.innerHTML = cart.map((item, i) => `
-          <div class="cart-item" style="animation-delay:${Math.min(i,6) * 0.06}s">
-            <span>${item.name}</span>
-            <span style="display:flex; align-items:center; gap:10px;">
-              ${faNum(item.price)} تومان
-              <button data-i="${i}" class="remove-item" aria-label="حذف">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6h16Z"/></svg>
-              </button>
-            </span>
-          </div>
-        `).join('');
-        cartItemsEl.querySelectorAll('.remove-item').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const c = loadCart();
-            c.splice(Number(btn.dataset.i), 1);
-            saveCart(c);
-            render();
-          });
-        });
+  function formatPrice(value){
+    return Number(value || 0).toLocaleString('fa-IR') + ' تومان';
+  }
+
+  function createCartItem(id, remove){
+    const item = catalog[id];
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+
+    const name = document.createElement('span');
+    name.textContent = item.name;
+
+    const detail = document.createElement('span');
+    detail.className = 'cart-item-detail';
+    const price = document.createElement('span');
+    price.textContent = formatPrice(item.price);
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'remove-item';
+    button.setAttribute('aria-label', `حذف ${item.name} از سبد`);
+    button.textContent = '×';
+    button.addEventListener('click', () => remove(id));
+
+    detail.append(price, button);
+    row.append(name, detail);
+    return row;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const count = document.getElementById('cartCount');
+    const itemsHost = document.getElementById('cartItems');
+    const total = document.getElementById('cartTotal');
+    const drawer = document.getElementById('cartDrawer');
+    const openButton = document.getElementById('cartOpen');
+    const closeButton = document.getElementById('cartClose');
+    const checkout = document.getElementById('checkoutBtn');
+    const shopEnabled = Boolean(config.features?.shop);
+
+    let overlay;
+    let returnFocus = openButton;
+
+    function render(){
+      const cart = loadCart();
+      if (count) count.textContent = cart.length.toLocaleString('fa-IR');
+
+      if (itemsHost) {
+        itemsHost.replaceChildren();
+        if (!cart.length) {
+          const empty = document.createElement('p');
+          empty.className = 'cart-empty';
+          empty.textContent = shopEnabled ? 'سبد خریدت خالی است.' : 'فروشگاه هنوز راه‌اندازی نشده است.';
+          itemsHost.appendChild(empty);
+        } else {
+          cart.forEach(id => itemsHost.appendChild(createCartItem(id, removeItem)));
+        }
       }
+      if (total) {
+        const value = cart.reduce((sum, id) => sum + Number(catalog[id]?.price || 0), 0);
+        total.textContent = formatPrice(value);
+      }
+      if (checkout) checkout.disabled = !shopEnabled || cart.length === 0;
     }
-    if (cartTotalEl){
-      const total = cart.reduce((s,i) => s + i.price, 0);
-      cartTotalEl.textContent = faNum(total) + ' تومان';
-    }
-  }
 
-  function bumpCartCount(){
-    if (!cartCountEl) return;
-    cartCountEl.classList.remove('bump');
-    void cartCountEl.offsetWidth; // restart animation
-    cartCountEl.classList.add('bump');
-    if (cartOpenBtn){
-      cartOpenBtn.classList.remove('shake');
-      void cartOpenBtn.offsetWidth;
-      cartOpenBtn.classList.add('shake');
-    }
-  }
-
-  function flyToCart(fromEl){
-    if (!cartOpenBtn || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const from = fromEl.getBoundingClientRect();
-    const to = cartOpenBtn.getBoundingClientRect();
-    const dot = document.createElement('div');
-    dot.className = 'fly-dot';
-    const size = 14;
-    // PERF FIX: position is set once (left/top) and the actual movement now happens
-    // via a CSS "transform" transition (see .fly-dot in style.css) instead of animating
-    // left/top/width/height directly, which used to force a full layout recalculation
-    // on every frame of this animation.
-    const startX = from.left + from.width / 2 - size / 2;
-    const startY = from.top + from.height / 2 - size / 2;
-    const endX = to.left + to.width / 2 - size / 2;
-    const endY = to.top + to.height / 2 - size / 2;
-    dot.style.left = startX + 'px';
-    dot.style.top = startY + 'px';
-    dot.style.width = size + 'px';
-    dot.style.height = size + 'px';
-    dot.style.opacity = '1';
-    dot.style.transform = 'translate(0,0) scale(1)';
-    document.body.appendChild(dot);
-    requestAnimationFrame(() => {
-      dot.style.transform = `translate(${(endX - startX).toFixed(1)}px, ${(endY - startY).toFixed(1)}px) scale(0.28)`;
-      dot.style.opacity = '0';
-    });
-    setTimeout(() => dot.remove(), 650);
-  }
-
-  document.querySelectorAll('.add-cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.pack-card');
-      const cart = loadCart();
-      cart.push({ id: card.dataset.id, name: card.dataset.name, price: Number(card.dataset.price) });
-      saveCart(cart);
+    function removeItem(id){
+      saveCart(loadCart().filter(itemId => itemId !== id));
       render();
-      showToast(card.dataset.name + ' به سبد اضافه شد');
-      flyToCart(btn);
-      bumpCartCount();
-      if (cartDrawer) cartDrawer.classList.add('open');
+    }
+
+    function ensureOverlay(){
+      if (overlay) return overlay;
+      overlay = document.createElement('div');
+      overlay.className = 'cart-overlay';
+      overlay.addEventListener('click', closeDrawer);
+      document.body.appendChild(overlay);
+      return overlay;
+    }
+
+    function openDrawer(){
+      if (!drawer) return;
+      returnFocus = document.activeElement;
+      drawer.inert = false;
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      openButton?.setAttribute('aria-expanded', 'true');
+      ensureOverlay().classList.add('open');
+      if (typeof syncBodyLock === 'function') syncBodyLock();
+      requestAnimationFrame(() => closeButton?.focus());
+    }
+
+    function closeDrawer(){
+      if (!drawer) return;
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      openButton?.setAttribute('aria-expanded', 'false');
+      overlay?.classList.remove('open');
+      drawer.inert = true;
+      if (typeof syncBodyLock === 'function') syncBodyLock();
+      if (returnFocus instanceof HTMLElement) returnFocus.focus();
+    }
+
+    if (drawer) {
+      drawer.setAttribute('role', 'dialog');
+      drawer.setAttribute('aria-modal', 'true');
+      drawer.setAttribute('aria-label', 'سبد خرید');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawer.inert = true;
+      drawer.addEventListener('keydown', event => {
+        if (typeof trapFocus === 'function') trapFocus(event, drawer);
+      });
+    }
+    if (openButton) {
+      openButton.setAttribute('aria-controls', drawer?.id || 'cartDrawer');
+      openButton.setAttribute('aria-expanded', 'false');
+      openButton.addEventListener('click', openDrawer);
+    }
+    closeButton?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && drawer?.classList.contains('open')) closeDrawer();
     });
-  });
 
-  if (cartOpenBtn && cartDrawer) cartOpenBtn.addEventListener('click', () => cartDrawer.classList.add('open'));
-  if (cartCloseBtn && cartDrawer) cartCloseBtn.addEventListener('click', () => cartDrawer.classList.remove('open'));
+    document.querySelectorAll('.pack-card .add-cart-btn').forEach(button => {
+      const card = button.closest('.pack-card');
+      const id = card?.dataset.id;
+      const item = id ? catalog[id] : null;
+      if (card && item) {
+        card.dataset.name = item.name;
+        card.dataset.price = String(item.price);
+        const priceHost = card.querySelector('.pack-price');
+        if (priceHost) {
+          const currency = document.createElement('span');
+          currency.textContent = ' تومان';
+          priceHost.replaceChildren(document.createTextNode(Number(item.price).toLocaleString('fa-IR')), currency);
+        }
+      }
+      if (!shopEnabled || !id || !item) {
+        button.disabled = true;
+        button.textContent = 'فروش هنوز فعال نیست';
+        return;
+      }
+      button.addEventListener('click', () => {
+        const cart = loadCart();
+        if (!cart.includes(id)) cart.push(id);
+        saveCart(cart);
+        render();
+        showToast(`${catalog[id].name} به سبد اضافه شد.`);
+        openDrawer();
+      });
+    });
 
-  if (checkoutBtn){
-    checkoutBtn.addEventListener('click', () => {
+    checkout?.addEventListener('click', () => {
+      if (!shopEnabled) {
+        showToast('فروشگاه هنوز راه‌اندازی نشده است.');
+        return;
+      }
       const cart = loadCart();
-      if (cart.length === 0){ showToast('اول یک پک به سبد اضافه کن'); return; }
-      localStorage.setItem('zyran_last_order', JSON.stringify(cart));
-      saveCart([]);
+      if (!cart.length) return;
+      try { sessionStorage.setItem('zyran_checkout_items', JSON.stringify(cart)); } catch (_) {}
       window.location.href = 'checkout.html';
     });
-  }
 
-  render();
-});
+    render();
+  });
+})();

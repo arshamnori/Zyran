@@ -1,0 +1,16 @@
+name = "zyran-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://zyran.ir,https://www.zyran.ir,http://localhost:8000"
+SERVER_READY = "false"
+STATUS_PROVIDER_URL = ""
+ORDERING_ENABLED = "false"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "zyran-db"
+database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+migrations_dir = "migrations"

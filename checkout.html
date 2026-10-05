@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("zyran_theme") === "light" ? "light" : "dark");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.zyran.ir; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <title>تکمیل سفارش | Zyran.ir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="manifest" href="site.webmanifest">
 
 <meta name="description" content="تکمیل و بررسی سفارش در Zyran.ir.">
 <meta name="author" content="Zyran.ir">
@@ -21,11 +26,17 @@
 <meta property="og:title" content="تکمیل سفارش | Zyran.ir">
 <meta property="og:description" content="تکمیل و بررسی سفارش در Zyran.ir.">
 <meta property="og:url" content="https://zyran.ir/checkout.html">
-<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="تکمیل سفارش | Zyran.ir">
 <meta name="twitter:description" content="تکمیل و بررسی سفارش در Zyran.ir.">
+<meta property="og:image" content="https://zyran.ir/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Zyran.ir Minecraft Community">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zyran.ir/assets/og-image.png">
 </head>
 <body>
+<a class="skip-link" href="#main-content">پرش به محتوای اصلی</a>
 <div class="page-loader" id="pageLoader">
   <div class="loader-inner">
     <div class="bloom">
@@ -51,7 +62,7 @@
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-head">
     <span class="mobile-nav-title">منوی سایت</span>
-    <button class="mobile-close" id="mobileClose" aria-label="بستن منو" title="بستن منو">
+    <button type="button" class="mobile-close" id="mobileClose" aria-label="بستن منو" title="بستن منو">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
@@ -64,8 +75,8 @@
   <a href="shop.html">فروشگاه</a>
   <a href="donate.html">حمایت از سرور</a>
   <a href="telegram-bot.html">بات تلگرامی</a>
-  <a href="#faq">سؤالات متداول</a>
-  <a href="#feedback">انتقادات و پیشنهادات</a>
+  <a href="index.html#faq">سؤالات متداول</a>
+  <a href="index.html#feedback">انتقادات و پیشنهادات</a>
 </div>
 
 <header>
@@ -91,28 +102,28 @@
       <li><a href="donate.html">حمایت از سرور</a></li>
     </ul>
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم روشن/تاریک">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="تغییر تم روشن/تاریک">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
       </button>
-      <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
+      <button type="button" class="cart-btn" id="cartOpen" aria-label="سبد خرید">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
       <a href="login.html" class="btn-auth header-auth-btn">ورود / ثبت‌نام</a>
-      <button class="burger" id="burgerBtn" aria-label="منو"><span></span><span></span><span></span></button>
+      <button type="button" class="burger" id="burgerBtn" aria-label="منو"><span></span><span></span><span></span></button>
     </div>
   </nav>
 </header>
 
-<main>
+<main id="main-content">
   <section class="page-section">
     <div class="wrap checkout-wrap">
       <div class="checkout-icon">
         <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-      <h1 id="checkoutTitle" style="font-size:26px; font-weight:800; margin-bottom:10px;">سفارشت ثبت شد 🌸</h1>
-      <p id="checkoutDesc" style="color:var(--cream-dim); font-size:15px;">به‌زودی درگاه پرداخت آنلاین فعال می‌شه. تا اون موقع، تیم زیران از طریق تلگرام یا دیسکورد برای تکمیل پرداخت باهات هماهنگ می‌کنه.</p>
+      <h1 id="checkoutTitle" style="font-size:26px; font-weight:800; margin-bottom:10px;">تکمیل سفارش</h1>
+      <p id="checkoutDesc" style="color:var(--cream-dim); font-size:15px;">مبلغ نهایی همیشه در سرور محاسبه می‌شود و سفارش فقط پس از پاسخ موفق API ثبت خواهد شد.</p>
 
       <div class="checkout-card" id="orderSummary"></div>
 
@@ -172,7 +183,7 @@
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-head">
     <strong>سبد خرید</strong>
-    <button id="cartClose" class="cart-close-btn" aria-label="بستن سبد خرید">
+    <button type="button" id="cartClose" class="cart-close-btn" aria-label="بستن سبد خرید">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
@@ -190,8 +201,8 @@
         <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
         <p>سروری برای اونایی که هم عاشق کرفتن، هم عاشق بهار ژاپنی‌ان. یه جامعه‌ی کوچیک و دوستانه، زیر شکوفه‌های گیلاس.</p>
         <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="تلگرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></a>
-          <a href="#" class="social-btn" aria-label="دیسکورد"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+          <a role="link" class="social-btn" data-social="telegram" aria-label="تلگرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></a>
+          <a role="link" class="social-btn" data-social="discord" aria-label="دیسکورد"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
         </div>
       </div>
       <div class="footer-col">
@@ -219,109 +230,107 @@
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
+<script src="assets/config.js"></script>
+<script src="assets/api.js"></script>
 <script src="assets/main.js"></script>
 <script src="assets/cart.js"></script>
 <script>
-(function(){
-  const orderRaw = localStorage.getItem('zyran_last_order');
-  const order = orderRaw ? JSON.parse(orderRaw) : [];
-  const el = document.getElementById('orderSummary');
+(function () {
+  const config = window.ZYRAN_CONFIG;
+  const catalog = config.shopPacks || {};
+  const summary = document.getElementById('orderSummary');
   const form = document.getElementById('checkoutForm');
   const title = document.getElementById('checkoutTitle');
-  const desc = document.getElementById('checkoutDesc');
+  const description = document.getElementById('checkoutDesc');
+  const message = document.getElementById('checkoutMsg');
+  const available = Boolean(config.features.shop && config.features.auth && config.features.payments);
 
-  if (order.length === 0){
-    el.innerHTML = '<p style="text-align:center; color:var(--cream-dim); font-size:14px;">سفارشی برای نمایش پیدا نشد.</p>';
-    title.textContent = 'سبد خریدت خالیه';
-    desc.textContent = 'اول از فروشگاه یه پک انتخاب کن، بعد بیا اینجا تسویه کن.';
-    if (form) form.style.display = 'none';
+  function showMessage(text, type) {
+    message.textContent = text;
+    message.className = 'form-msg show ' + type;
+    message.setAttribute('role', type === 'error' ? 'alert' : 'status');
+  }
+
+  let items = [];
+  try {
+    const raw = JSON.parse(sessionStorage.getItem('zyran_checkout_items') || '[]');
+    items = [...new Set(raw.filter(id => Object.hasOwn(catalog, id)))];
+  } catch (_) {}
+
+  if (!available) {
+    title.textContent = 'تسویه‌حساب هنوز فعال نیست';
+    description.textContent = 'تا زمان استقرار بک‌اند و اتصال درگاه رسمی، هیچ سفارش یا پرداختی دریافت نمی‌شود.';
+    form.hidden = true;
+    summary.replaceChildren();
+    const note = document.createElement('p');
+    note.className = 'empty-state';
+    note.textContent = 'برای امنیت شما، شماره سفارش یا کد پیگیری ساختگی تولید نمی‌کنیم.';
+    summary.appendChild(note);
     return;
   }
 
-  const total = order.reduce((s,i) => s + i.price, 0);
-  el.innerHTML = order.map(item => `
-    <div class="checkout-row"><span>${item.name}</span><span>${item.price.toLocaleString('fa-IR')} تومان</span></div>
-  `).join('') + `<div class="checkout-total-row"><span>جمع کل</span><span>${total.toLocaleString('fa-IR')} تومان</span></div>`;
-
-  function randomDigits(n){
-    let s = '';
-    for (let i = 0; i < n; i++) s += Math.floor(Math.random() * 10);
-    return s;
-  }
-  function randomTrackingCode(n){
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no confusing 0/O/1/I
-    let s = '';
-    for (let i = 0; i < n; i++) s += chars[Math.floor(Math.random() * chars.length)];
-    return s;
+  if (!items.length) {
+    title.textContent = 'سبد خریدت خالی است';
+    description.textContent = 'ابتدا یک پک از فروشگاه انتخاب کن.';
+    form.hidden = true;
+    return;
   }
 
-  const msgEl = document.getElementById('checkoutMsg');
-  function showMsg(text, type){
-    msgEl.textContent = text;
-    msgEl.className = 'form-msg show ' + type;
-  }
+  summary.replaceChildren();
+  let total = 0;
+  items.forEach(id => {
+    const item = catalog[id];
+    total += Number(item.price);
+    const row = document.createElement('div');
+    row.className = 'checkout-row';
+    const name = document.createElement('span');
+    name.textContent = item.name;
+    const price = document.createElement('span');
+    price.textContent = Number(item.price).toLocaleString('fa-IR') + ' تومان';
+    row.append(name, price);
+    summary.appendChild(row);
+  });
+  const totalRow = document.createElement('div');
+  totalRow.className = 'checkout-total-row';
+  const totalLabel = document.createElement('span');
+  totalLabel.textContent = 'جمع نمایشی';
+  const totalValue = document.createElement('span');
+  totalValue.textContent = total.toLocaleString('fa-IR') + ' تومان';
+  totalRow.append(totalLabel, totalValue);
+  summary.appendChild(totalRow);
 
-  if (form){
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const mcUsername = document.getElementById('mcUsername').value.trim();
-      const telegramId = document.getElementById('telegramId').value.trim();
-      const orderNote = document.getElementById('orderNote').value.trim();
-
-      if (!mcUsername || !telegramId){
-        showMsg('لطفاً آیدی اکانت و آیدی تلگرامت رو وارد کن.', 'error');
-        return;
-      }
-
-      const orderNumber = 'ZY-' + randomDigits(6);
-      const trackingCode = randomTrackingCode(8);
-      const record = {
-        orderNumber,
-        trackingCode,
-        mcUsername,
-        telegramId,
-        orderNote,
-        items: order,
-        total,
-        createdAt: new Date().toISOString(),
-        status: 'در انتظار تسویه'
-      };
-
-      try{
-        const all = JSON.parse(localStorage.getItem('zyran_orders')) || [];
-        all.push(record);
-        localStorage.setItem('zyran_orders', JSON.stringify(all));
-      }catch(e){}
-      localStorage.removeItem('zyran_last_order');
-
-      document.getElementById('orderNumberText').textContent = 'شماره سفارش: ' + orderNumber;
-      document.getElementById('trackingCodeText').textContent = 'کد پیگیری: ' + trackingCode;
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const submit = form.querySelector('[type="submit"]');
+    submit.disabled = true;
+    try {
+      const result = await window.ZyranAPI.createOrder(items, {
+        minecraftUsername: document.getElementById('mcUsername').value.trim(),
+        telegramId: document.getElementById('telegramId').value.trim(),
+        note: document.getElementById('orderNote').value.trim()
+      });
+      sessionStorage.removeItem('zyran_checkout_items');
+      document.getElementById('orderNumberText').textContent = 'شماره سفارش: ' + result.orderNumber;
+      document.getElementById('trackingCodeText').textContent = 'کد پیگیری: ' + result.trackingCode;
       document.getElementById('orderResult').style.display = 'block';
-      form.style.display = 'none';
-      title.textContent = 'سفارشت نهایی شد 🌸';
-      desc.textContent = 'شماره سفارش و کد پیگیری رو نگه دار و برای تکمیل پرداخت، توی تلگرام یا دیسکورد به تیم زیران بده.';
-      if (typeof showToast === 'function') showToast('سفارش ثبت شد: ' + orderNumber);
-    });
-  }
+      form.hidden = true;
+      title.textContent = 'سفارش در سرور ثبت شد 🌸';
+      description.textContent = 'برای ادامه پرداخت فقط از لینک درگاه رسمی همین سفارش استفاده کن.';
+    } catch (error) {
+      showMessage(error.message || 'ثبت سفارش انجام نشد.', 'error');
+    } finally {
+      submit.disabled = false;
+    }
+  });
 
-  document.querySelectorAll('[data-copy-target]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const target = document.getElementById(btn.dataset.copyTarget);
-      const text = target.textContent.split(':').slice(1).join(':').trim();
-      try{
-        await navigator.clipboard.writeText(text);
-      }catch(e){
-        const ta = document.createElement('textarea');
-        ta.value = text; document.body.appendChild(ta); ta.select();
-        document.execCommand('copy'); document.body.removeChild(ta);
-      }
-      const label = btn.querySelector('span');
-      const original = label.textContent;
-      label.textContent = 'کپی شد ✓';
-      btn.classList.add('copied');
-      setTimeout(() => { label.textContent = original; btn.classList.remove('copied'); }, 2000);
+  document.querySelectorAll('[data-copy-target]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const target = document.getElementById(button.dataset.copyTarget);
+      const value = target.textContent.split(':').slice(1).join(':').trim();
+      await navigator.clipboard.writeText(value);
+      showToast('کپی شد.');
     });
   });
 })();
