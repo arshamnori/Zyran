@@ -1,589 +1,910 @@
 <!DOCTYPE html>
-<html lang="fa-IR" dir="rtl">
+<html lang="fa-IR" dir="rtl" data-bs-theme="dark">
 <head>
 <meta charset="UTF-8">
-<script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("zyran_theme") === "light" ? "light" : "dark");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-
-<meta name="description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
-<meta name="author" content="Zyran.ir">
-<meta name="theme-color" content="#151923">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<title>زیرن Zyran | سایت آموزش برنامه نویسی</title>
+<meta name="description" content="زیرن (Zyran) — سایت آموزش برنامه نویسی فارسی؛ از صفر تا قهرمان در پایتون، جاوااسکریپت، HTML/CSS، بوت‌استرپ ۵ RTL و ریکت. دوره‌های رایگان، کدهای قابل کپی، آزمون و نقشه‌راه.">
+<meta name="author" content="Zyran">
+<meta name="theme-color" content="#0b1020">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="keywords" content="آموزش برنامه نویسی,آموزش پایتون,آموزش جاوااسکریپت,بوت استرپ,bootstrap persian,آموزش HTML,آموزش CSS,ریکت,react,سایت آموزشی,Zyran,زیرن">
 <link rel="canonical" href="https://zyran.ir/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Zyran — سایت آموزش برنامه نویسی">
+<meta property="og:title" content="زیرن Zyran | سایت آموزش برنامه نویسی">
+<meta property="og:description" content="آموزش برنامه‌نویسی از صفر؛ پایتون، جاوااسکریپت، بوت‌استرپ، ریکت با کدهای قابل کپی و آزمون.">
 <meta property="og:locale" content="fa_IR">
-<meta property="og:site_name" content="Zyran.ir">
-<meta property="og:title" content="سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی">
-<meta property="og:description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
-<meta property="og:url" content="https://zyran.ir/">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="سرور ماینکرفت Zyran.ir | بدوارز، سروایوال و بازی آنلاین فارسی">
-<meta name="twitter:description" content="سرور ماینکرفت Zyran.ir؛ تجربه بدوارز و سروایوال، راهنمای اتصال، دانلود منابع ماینکرفت و جامعه بازیکنان فارسی‌زبان.">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://zyran.ir/#website","url":"https://zyran.ir/","name":"Zyran.ir","inLanguage":"fa-IR","description":"سرور ماینکرفت Zyran.ir؛ بازی در حالت‌های بدوارز و سروایوال، راهنمای اتصال، دانلودها و امکانات جامعه بازیکنان زیران."},{"@type":"Organization","@id":"https://zyran.ir/#organization","name":"Zyran.ir","url":"https://zyran.ir/"},{"@type":"WebPage","@id":"https://zyran.ir/#webpage","url":"https://zyran.ir/","name":"Zyran.ir | سرور ماینکرفت فارسی و ایرانی","description":"سرور ماینکرفت Zyran.ir؛ بازی در حالت‌های بدوارز و سروایوال، راهنمای اتصال، دانلودها و امکانات جامعه بازیکنان زیران.","isPartOf":{"@id":"https://zyran.ir/#website"},"inLanguage":"fa-IR"},{"@type":"VideoGame","name":"Minecraft","genre":"Sandbox","description":"سرور ماینکرفت Zyran.ir برای بازیکنان و حالت‌های مختلف بازی."}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"خانه","item":"https://zyran.ir/"}]}</script>
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.rtl.min.css">
+<style>
+@font-face{font-family:'Vazirmatn';src:url('vendor/fonts/Vazirmatn-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Vazirmatn';src:url('vendor/fonts/Vazirmatn-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Vazirmatn';src:url('vendor/fonts/Vazirmatn-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Vazirmatn';src:url('vendor/fonts/Vazirmatn-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Vazirmatn';src:url('vendor/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+:root{--zy-bg:#0b1020;--zy-bg-2:#111a36;--zy-surface:#15214a;--zy-primary:#7c5cff;--zy-primary-2:#5ad1ff;--zy-accent:#ff7eb6;--zy-text:#eef1ff;--zy-muted:#a4aed1;--zy-card:rgba(255,255,255,.05);--zy-border:rgba(255,255,255,.08);--zy-gradient:linear-gradient(135deg,#7c5cff 0%,#5ad1ff 50%,#ff7eb6 100%);--zy-code-bg:#0a0f1f}
+[data-bs-theme="light"]{--zy-bg:#f5f7ff;--zy-bg-2:#fff;--zy-surface:#fff;--zy-primary:#6b4df0;--zy-primary-2:#0ea5e9;--zy-accent:#e11d48;--zy-text:#10142b;--zy-muted:#5b6386;--zy-card:#fff;--zy-border:#e5e9ff;--zy-code-bg:#0f172a}
+html,body{background:var(--zy-bg);color:var(--zy-text);font-family:'Vazirmatn','IRANSans','Tahoma',sans-serif!important}
+body{background:radial-gradient(1200px 600px at 80% -10%,rgba(124,92,255,.18),transparent 60%),radial-gradient(900px 500px at -10% 20%,rgba(90,209,255,.15),transparent 60%),radial-gradient(800px 500px at 50% 110%,rgba(255,126,182,.12),transparent 60%),var(--zy-bg);min-height:100vh}
+.font-pixel{font-family:'Press Start 2P',monospace;letter-spacing:1px}
+.text-gradient{background:var(--zy-gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn-zy{background:var(--zy-gradient);color:#fff!important;border:0;padding:12px 22px;border-radius:14px;font-weight:600;box-shadow:0 10px 30px -10px rgba(124,92,255,.55);transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;display:inline-block}
+.btn-zy:hover{transform:translateY(-2px);box-shadow:0 16px 36px -12px rgba(124,92,255,.7);color:#fff}
+.btn-outline-zy{border:1.5px solid rgba(124,92,255,.5);color:var(--zy-text);padding:10px 20px;border-radius:14px;font-weight:500;background:rgba(255,255,255,.03);text-decoration:none;display:inline-block}
+.btn-outline-zy:hover{border-color:var(--zy-primary);color:#fff;background:rgba(124,92,255,.1)}
+.glass{background:var(--zy-card);border:1px solid var(--zy-border);border-radius:18px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.glass:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.35);box-shadow:0 20px 50px -20px rgba(0,0,0,.4)}
+.navbar-zy{background:rgba(11,16,32,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--zy-border);position:sticky;top:0;z-index:1030}
+[data-bs-theme="light"] .navbar-zy{background:rgba(255,255,255,.78)}
+.brand-logo{width:42px;height:42px;border-radius:12px;background:var(--zy-gradient);display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:20px;box-shadow:0 10px 25px -10px rgba(124,92,255,.7)}
+.nav-link-zy{color:var(--zy-muted);font-weight:500;padding:8px 14px;border-radius:10px;text-decoration:none;display:inline-block}
+.nav-link-zy:hover,.nav-link-zy.active{color:var(--zy-text);background:rgba(124,92,255,.12)}
+.hero{padding:80px 0 50px}
+.hero-badge{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border-radius:999px;font-size:13px;background:rgba(90,209,255,.12);color:var(--zy-primary-2);border:1px solid rgba(90,209,255,.25)}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}70%{box-shadow:0 0 0 12px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.code-block{background:var(--zy-code-bg);border:1px solid var(--zy-border);border-radius:14px;direction:ltr;text-align:left;padding:16px 18px;font-family:'JetBrains Mono','Fira Code','Consolas',monospace;font-size:14px;line-height:1.8;color:#e5e7eb;overflow-x:auto;position:relative;margin:0}
+.code-block .kw{color:#c084fc}.code-block .str{color:#86efac}.code-block .com{color:#6b7280;font-style:italic}.code-block .num{color:#fbbf24}.code-block .fn{color:#60a5fa}
+.copy-code{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.08);color:#fff;border:0;border-radius:8px;padding:4px 10px;font-size:12px;cursor:pointer;z-index:2}
+.copy-code:hover{background:rgba(124,92,255,.4)}
+.course-card{padding:22px;height:100%;position:relative;overflow:hidden}
+.course-card .emoji{font-size:40px}
+.course-card .level{font-size:12px;padding:3px 10px;border-radius:999px}
+.level-مقدماتی{background:rgba(34,197,94,.15);color:#22c55e}
+.level-متوسط{background:rgba(251,191,36,.15);color:#fbbf24}
+.level-پیشرفته{background:rgba(239,68,68,.15);color:#ef4444}
+.roadmap-line{position:relative}
+.roadmap-line::before{content:"";position:absolute;right:23px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--zy-primary),var(--zy-accent));opacity:.4}
+.rm-item{position:relative;padding:14px 22px 14px 22px;margin-right:0}
+.rm-dot{position:absolute;right:14px;top:22px;width:20px;height:20px;border-radius:50%;background:var(--zy-gradient);box-shadow:0 0 0 4px rgba(124,92,255,.15)}
+.zy-accordion .accordion-item{background:transparent;border:1px solid var(--zy-border);border-radius:14px!important;margin-bottom:10px;overflow:hidden}
+.zy-accordion .accordion-button{background:var(--zy-card);color:var(--zy-text);font-weight:600}
+.zy-accordion .accordion-button:not(.collapsed){background:rgba(124,92,255,.12);color:var(--zy-text);box-shadow:none}
+.zy-accordion .accordion-button::after{margin-right:auto;margin-left:0}
+.zy-accordion .accordion-body{background:rgba(255,255,255,.02);color:var(--zy-muted)}
+.stat-num{font-size:34px;font-weight:800}
+.quiz-option{display:block;width:100%;text-align:right;padding:12px 16px;margin-bottom:8px;border:1px solid var(--zy-border);border-radius:12px;background:rgba(255,255,255,.03);color:var(--zy-text);cursor:pointer;transition:all .2s;font-family:inherit}
+.quiz-option:hover{border-color:var(--zy-primary);background:rgba(124,92,255,.08)}
+.quiz-option:disabled{cursor:not-allowed;opacity:.8}
+.quiz-option.correct{border-color:#22c55e;background:rgba(34,197,94,.12)}
+.quiz-option.wrong{border-color:#ef4444;background:rgba(239,68,68,.12)}
+.footer-zy{background:var(--zy-bg-2);border-top:1px solid var(--zy-border);padding:50px 0 25px;margin-top:80px}
+.footer-zy a{color:var(--zy-muted);text-decoration:none}
+.footer-zy a:hover{color:var(--zy-primary-2)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(124,92,255,.35);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:rgba(124,92,255,.6)}
+.section-title{font-size:32px;font-weight:800}
+.section-kicker{color:var(--zy-primary-2);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.float-slow{animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.search-box{background:var(--zy-card);border:1px solid var(--zy-border);border-radius:14px;padding:12px 16px;color:var(--zy-text);width:100%}
+.search-box:focus{outline:none;border-color:var(--zy-primary);box-shadow:0 0 0 4px rgba(124,92,255,.15);background:var(--zy-card);color:var(--zy-text)}
+[data-bs-theme="light"] .search-box{background:#fff}
+.theme-toggle{width:40px;height:40px;border-radius:12px;border:1px solid var(--zy-border);background:rgba(255,255,255,.04);color:var(--zy-text);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.theme-toggle:hover{border-color:var(--zy-primary)}
+.icon-sun{display:none}[data-bs-theme="light"] .icon-moon{display:none}[data-bs-theme="light"] .icon-sun{display:block}
+.zy-tabs .nav-link{color:var(--zy-muted);border:0;border-bottom:2px solid transparent;border-radius:0;padding:10px 18px;font-weight:500}
+.zy-tabs .nav-link.active{color:var(--zy-text);background:transparent;border-bottom-color:var(--zy-primary)}
+.progress-zy{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.progress-zy > div{height:100%;background:var(--zy-gradient);border-radius:999px}
+.back-to-top{position:fixed;bottom:24px;left:24px;z-index:1020;width:46px;height:46px;border-radius:14px;border:0;background:var(--zy-gradient);color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 12px 30px -10px rgba(124,92,255,.6)}
+.back-to-top.show{display:inline-flex}
+.code-window{border:1px solid var(--zy-border);border-radius:18px;overflow:hidden;background:var(--zy-code-bg);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.code-window .dots{padding:12px 16px;background:rgba(255,255,255,.03);display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--zy-border);direction:ltr}
+.code-window .dots span{width:12px;height:12px;border-radius:50%}
+.offcanvas{background:var(--zy-bg-2)!important}
+.offcanvas-backdrop.show{opacity:.5}
+.form-control, .form-select{background:var(--zy-card);border:1px solid var(--zy-border);color:var(--zy-text)}
+.form-control:focus, .form-select:focus{background:var(--zy-card);color:var(--zy-text);border-color:var(--zy-primary);box-shadow:0 0 0 4px rgba(124,92,255,.15)}
+.form-label{color:var(--zy-text)}
+pre{margin:0}
+code{font-family:'JetBrains Mono','Fira Code','Consolas',monospace;color:var(--zy-primary-2)}
+</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22url(%23g)%22/><defs><linearGradient id=%22g%22 x1=%220%22 y1=%220%22 x2=%221%22 y2=%221%22><stop offset=%220%22 stop-color=%22%237c5cff%22/><stop offset=%22.5%22 stop-color=%22%235ad1ff%22/><stop offset=%221%22 stop-color=%22%23ff7eb6%22/></linearGradient></defs><text x=%2250%22 y=%2266%22 font-size=%2252%22 font-family=%22Arial,sans-serif%22 font-weight=%22800%22 fill=%22white%22 text-anchor=%22middle%22>Z</text></svg>">
 </head>
-<body>
-<div class="page-loader" id="pageLoader">
-  <div class="loader-inner">
-    <div class="bloom">
-      <svg viewBox="0 0 96 96">
-        <g>
-          <path class="petal-b" d="M48 48 C48 30 40 18 30 12 C24 24 26 40 40 50 C43 48 46 48 48 48Z" fill="#f0a8c4"/>
-          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:72deg;"/>
-          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:144deg;"/>
-          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#f0a8c4" style="--rot:216deg;"/>
-          <path class="petal-b" d="M48 48 C64 44 78 38 84 26 C70 22 56 28 48 42 C47 44 47 46 48 48Z" fill="#e88bb2" style="--rot:288deg;"/>
-          <circle class="center-dot" cx="48" cy="48" r="5"/>
-        </g>
-      </svg>
-    </div>
-    <div class="loader-text pixel">ZYRAN<span class="dotir">.IR</span></div>
-    <div class="loader-dots"><span></span><span></span><span></span></div>
-  </div>
-</div>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="80">
 
-<div id="petals" class="petal-field"></div>
-
-<div class="mobile-overlay" id="mobileOverlay"></div>
-<div class="mobile-nav" id="mobileNav">
-  <div class="mobile-nav-head">
-    <span class="mobile-nav-title">منوی سایت</span>
-    <button class="mobile-close" id="mobileClose" aria-label="بستن منو" title="بستن منو">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <a href="login.html" class="btn-auth" style="text-align:center;">ورود / ثبت‌نام</a>
-  <a href="index.html" class="current">خانه</a>
-  <a href="modes.html">حالت‌های بازی</a>
-  <a href="downloads.html">دانلودها</a>
-  <a href="guide.html">راهنما</a>
-  <a href="about.html">درباره ما</a>
-  <a href="shop.html">فروشگاه</a>
-  <a href="donate.html">حمایت از سرور</a>
-  <a href="telegram-bot.html">بات تلگرامی</a>
-  <a href="#faq">سؤالات متداول</a>
-  <a href="#feedback">انتقادات و پیشنهادات</a>
-</div>
-
-<header>
-  <nav class="wrap" aria-label="ناوبری اصلی">
-    <a href="index.html" class="brand">
-      <svg class="blossom brand-bloom" viewBox="0 0 24 24" fill="none">
-        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4"/>
-        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(72 12 12)"/>
-        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(144 12 12)"/>
-        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#e88bb2" transform="rotate(216 12 12)"/>
-        <path d="M12 12C12 7 9.5 3.5 6 2C4.5 5.5 5.5 10 9.5 13C10.4 12.4 11.2 12.1 12 12Z" fill="#f0a8c4" transform="rotate(288 12 12)"/>
-        <circle cx="12" cy="12" r="2.4" fill="#8a6248"/>
-      </svg>
-      <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
+<!-- Navbar -->
+<nav class="navbar-zy">
+  <div class="container d-flex align-items-center justify-content-between py-2">
+    <a href="#home" class="d-flex align-items-center gap-2 text-decoration-none">
+      <span class="brand-logo">Z</span>
+      <span class="fw-bold fs-4 text-gradient">Zyran</span>
+      <span class="text-muted d-none d-sm-inline" style="font-size:13px;">آموزش برنامه‌نویسی</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="current">خانه</a></li>
-      <li><a href="modes.html">حالت‌های بازی</a></li>
-      <li><a href="downloads.html">دانلودها</a></li>
-      <li><a href="guide.html">راهنما</a></li>
-      <li><a href="about.html">درباره ما</a></li>
-      <li><a href="shop.html">فروشگاه</a></li>
-      <li><a href="donate.html">حمایت از سرور</a></li>
-      <li><a href="telegram-bot.html">بات تلگرامی</a></li>
-      <li><a href="#faq">سؤالات متداول</a></li>
-      <li><a href="#feedback">انتقادات و پیشنهادات</a></li>
+    <div id="mainNav" class="d-none d-lg-flex align-items-center gap-1">
+      <a href="#home" class="nav-link-zy active">خانه</a>
+      <a href="#courses" class="nav-link-zy">دوره‌ها</a>
+      <a href="#roadmap" class="nav-link-zy">نقشه‌راه</a>
+      <a href="#playground" class="nav-link-zy">کدهای آماده</a>
+      <a href="#quiz" class="nav-link-zy">آزمون</a>
+      <a href="#tools" class="nav-link-zy">ابزارها</a>
+      <a href="#faq" class="nav-link-zy">سؤالات</a>
+      <a href="#contact" class="nav-link-zy">تماس</a>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
+      </button>
+      <a href="#courses" class="btn btn-zy d-none d-md-inline-block">شروع یادگیری</a>
+      <button class="btn btn-outline-zy d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNav" aria-label="منو">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav">
+  <div class="offcanvas-header border-bottom" style="border-color:var(--zy-border)">
+    <h5 class="offcanvas-title fw-bold text-gradient">منوی زیرن</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-2">
+    <a href="#home" class="nav-link-zy" data-bs-dismiss="offcanvas">🏠 خانه</a>
+    <a href="#courses" class="nav-link-zy" data-bs-dismiss="offcanvas">📚 دوره‌ها</a>
+    <a href="#roadmap" class="nav-link-zy" data-bs-dismiss="offcanvas">🗺 نقشه‌راه</a>
+    <a href="#playground" class="nav-link-zy" data-bs-dismiss="offcanvas">💻 کدهای آماده</a>
+    <a href="#quiz" class="nav-link-zy" data-bs-dismiss="offcanvas">🎯 آزمون</a>
+    <a href="#tools" class="nav-link-zy" data-bs-dismiss="offcanvas">🛠 ابزارها</a>
+    <a href="#faq" class="nav-link-zy" data-bs-dismiss="offcanvas">❓ سؤالات متداول</a>
+    <a href="#contact" class="nav-link-zy" data-bs-dismiss="offcanvas">📞 تماس با ما</a>
+    <a href="#courses" class="btn btn-zy mt-3" data-bs-dismiss="offcanvas">شروع یادگیری رایگان ←</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="hero-badge"><span class="pulse-dot"></span>رایگان، فارسی و با کدهای قابل کپی</span>
+        <h1 class="display-4 fw-bold mt-3 mb-3 lh-base">
+          با <span class="text-gradient">زیرن</span>،<br>
+          از صفر، <span class="text-gradient">برنامه‌نویس</span> شو
+        </h1>
+        <p class="fs-5 mb-4" style="color:var(--zy-muted);max-width:560px;">
+          آموزش ساده، روان و فارسیِ برنامه‌نویسی با کدهای قابل کپی، آزمون‌های تعاملی و نقشه‌راهی که می‌دونه باید چی رو، کی یاد بگیری. از HTML و پایتون گرفته تا بوت‌استرپ ۵ و ریکت.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <a href="#courses" class="btn btn-zy px-4 py-2 fs-6">شروع یادگیری ←</a>
+          <a href="#playground" class="btn btn-outline-zy px-4 py-2 fs-6">دیدن کدهای نمونه</a>
+        </div>
+        <div class="d-flex flex-wrap gap-4 mt-4">
+          <div><div class="stat-num text-gradient" id="stUsers">۰</div><div style="color:var(--zy-muted);font-size:13px;">دوره‌ی آموزشی</div></div>
+          <div><div class="stat-num text-gradient" id="stLessons">۰</div><div style="color:var(--zy-muted);font-size:13px;">نمونه کد</div></div>
+          <div><div class="stat-num text-gradient" id="stProjects">۰</div><div style="color:var(--zy-muted);font-size:13px;">سؤال آزمون</div></div>
+          <div><div class="stat-num text-gradient" id="stLang">۰</div><div style="color:var(--zy-muted);font-size:13px;">مرحله‌ی نقشه‌راه</div></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="code-window float-slow" dir="ltr">
+          <div class="dots">
+            <span style="background:#ff5f57"></span>
+            <span style="background:#febc2e"></span>
+            <span style="background:#28c840"></span>
+            <span class="ms-3 text-muted" style="font-size:12px;font-family:'JetBrains Mono',monospace">hello.py — Zyran</span>
+          </div>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="com"># اولین برنامه‌ی تو با زیرن</span>
+<span class="kw">def</span> <span class="fn">welcome</span>(name):
+    <span class="kw">return</span> <span class="str">f"سلام </span>{name}<span class="str">! خوش اومدی به زیرن 🚀"</span>
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    you = <span class="str">"برنامه‌نویس"</span>
+    <span class="fn">print</span>(<span class="fn">welcome</span>(you))
+    <span class="com"># خروجی: سلام برنامه‌نویس! خوش اومدی به زیرن 🚀</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">🎯</div>
+          <h4 class="fw-bold">یادگیری هدفمند</h4>
+          <p style="color:var(--zy-muted)">با نقشه‌راه مشخص می‌فهمی هر قدم چی باید یاد بگیری. وقت تلف نمی‌کنی.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">💻</div>
+          <h4 class="fw-bold">کدهای قابل کپی</h4>
+          <p style="color:var(--zy-muted)">هر درس همراه مثال‌های واقعی و کدهای کپی‌آماده است؛ فقط بزن تو کامپایلر و اجرا کن.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">🏆</div>
+          <h4 class="fw-bold">آزمون و چالش</h4>
+          <p style="color:var(--zy-muted)">پایان هر بخش آزمون تعاملی داره تا بفهمی واقعاً یاد گرفتی یا نه.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">🌐</div>
+          <h4 class="fw-bold">بوت‌استرپ ۵ RTL محلی</h4>
+          <p style="color:var(--zy-muted)">بوت‌استرپ را از قبل دانلود و راست‌چین کردیم؛ بدون نیاز به اینترنت پرسرعت و بدون لینک شکسته.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">🔤</div>
+          <h4 class="fw-bold">فونت وزیرمتن</h4>
+          <p style="color:var(--zy-muted)">از فونت فارسی زیبا و خوانای Vazirmatn برای راحتی چشم استفاده می‌کنیم.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <div class="fs-1 mb-2">🆓</div>
+          <h4 class="fw-bold">کاملاً رایگان و متن‌باز</h4>
+          <p style="color:var(--zy-muted)">همه چیز روی گیت‌هاب میزبانی می‌شود و می‌تونی مشارکت کنی.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">دوره‌های آموزشی</div>
+      <h2 class="section-title mt-2">مسیر یادگیری خودت رو انتخاب کن</h2>
+      <p style="color:var(--zy-muted)" class="mx-auto">از مقدماتی وب تا پیشرفته بک‌اند و فریم‌ورک‌ها؛ هر دوره پر از تمرین و پروژه است.</p>
+    </div>
+
+    <div class="row g-3 mb-4 justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <input type="text" id="courseSearch" class="search-box" placeholder="🔍 دنبال چی می‌گردی؟ مثلاً پایتون، ریکت، بوت‌استرپ..." />
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-2 justify-content-center mb-4" id="courseFilter">
+      <button class="btn btn-outline-zy active" data-filter="all">همه</button>
+      <button class="btn btn-outline-zy" data-filter="web">🌐 وب پایه</button>
+      <button class="btn btn-outline-zy" data-filter="frontend">🎨 فرانت‌اند</button>
+      <button class="btn btn-outline-zy" data-filter="backend">⚙️ بک‌اند</button>
+      <button class="btn btn-outline-zy" data-filter="python">🐍 پایتون</button>
+      <button class="btn btn-outline-zy" data-filter="mobile">📱 موبایل</button>
+    </div>
+
+    <div class="row g-4" id="coursesGrid"></div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">نقشه‌راه یادگیری</div>
+      <h2 class="section-title mt-2">از مبتدی تا حرفه‌ای در ۶ مرحله</h2>
+      <p style="color:var(--zy-muted)">اگه نمی‌دونی از کجا شروع کنی، این مسیر رو قدم‌به‌قدم دنبال کن.</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="roadmap-line">
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۱ — تفکر الگوریتمی</h5>
+            <p style="color:var(--zy-muted);margin:0">یاد می‌گیری مثل یک برنامه‌نویس فکر کنی: متغیر، شرط، حلقه، تابع.</p>
+          </div>
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۲ — HTML و CSS</h5>
+            <p style="color:var(--zy-muted);margin:0">ساختار و ظاهر وب‌سایت رو می‌سازی؛ تگ‌ها، استایل، فونت، ریسپانسیو.</p>
+          </div>
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۳ — بوت‌استرپ ۵</h5>
+            <p style="color:var(--zy-muted);margin:0">با بوت‌استرپ در چند دقیقه سایت‌های زیبا و ریسپانسیو می‌سازی. گرید، کامپوننت‌ها، RTL و یوتیلیتی‌ها.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="roadmap-line">
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۴ — جاوااسکریپت</h5>
+            <p style="color:var(--zy-muted);margin:0">به صفحه‌ات جان می‌دی؛ DOM، ایونت‌ها، آرایه‌ها، Promise و async/await.</p>
+          </div>
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۵ — یک فریم‌ورک (React)</h5>
+            <p style="color:var(--zy-muted);margin:0">ساخت اپلیکیشن‌های واقعی با کامپوننت‌ها، state و روتر.</p>
+          </div>
+          <div class="rm-item"><div class="rm-dot"></div>
+            <h5 class="fw-bold mb-1">مرحله ۶ — بک‌اند و دیپلوی</h5>
+            <p style="color:var(--zy-muted);margin:0">سرور، دیتابیس، احراز هویت، API و دیپلوی روی گیت‌هاب و سرویس‌های میزبانی.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <p class="mt-2" style="color:var(--zy-muted);font-size:13px;">شش مرحله‌ی بالا مسیر پیشنهادی است؛ هر کدوم رو که تموم کردی، روی آن مرحله تیک بزن.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYGROUND -->
+<section id="playground" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">کدهای آماده</div>
+      <h2 class="section-title mt-2">نمونه کدهای محبوب</h2>
+      <p style="color:var(--zy-muted)">یک کلیک کپی کن و تو پروژه‌هات استفاده کن.</p>
+    </div>
+
+    <ul class="nav zy-tabs justify-content-center mb-4" id="codeTabs" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#c-html">HTML</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#c-css">CSS / Bootstrap</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#c-js">JavaScript</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#c-py">Python</button></li>
     </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم روشن/تاریک">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
-      </button>
-      <button class="cart-btn" id="cartOpen" aria-label="سبد خرید">
-        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#f2e9e0" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-      <a href="login.html" class="btn-auth header-auth-btn">ورود / ثبت‌نام</a>
-      <button class="burger" id="burgerBtn" aria-label="منو"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
-</header>
 
-<main>
-  <section class="hero" id="home">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow-badge"><span class="dot"></span>سرور روشن است — همین حالا وصل شو</div>
-        <h1 class="hero-title">زیر شکوفه‌های <em>گیلاس</em>،<br>یک دنیای تازه بساز</h1>
-        <p class="hero-sub">زیران یک سرور ماینکرفت با فضایی الهام‌گرفته از بهار ژاپنی‌ست؛ جنگل‌های سرسبز، درخت‌های ساکورا، و رقابت‌های بدوارز و سروایوال که هر فصل تازه می‌شوند.</p>
-        <div class="ip-box">
-          <span class="ip-text" id="ipText">Zyran.ir</span>
-          <button class="copy-btn" id="copyBtn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span id="copyLabel">کپی آی‌پی</span>
-          </button>
-        </div>
-        <div class="hero-meta">
-          <div class="meta-item"><span class="pulse-dot"></span><span class="num" id="onlineCount">—</span><span class="lbl">آنلاین از ۲۰۰</span></div>
-          <div class="meta-item"><span class="num">v26.2</span><span class="lbl">نسخه فعلی</span></div>
-          <div class="meta-item"><span class="num">2</span><span class="lbl">حالت بازی فعال</span></div>
-        </div>
-      </div>
-      <div class="hero-art">
-        <svg viewBox="0 0 420 440" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="blossomGlow" cx="50%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#fde3ee"/>
-              <stop offset="100%" stop-color="#f0a8c4" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <ellipse cx="210" cy="410" rx="150" ry="18" fill="#000" opacity="0.25"/>
-          <g class="tree-sway" style="transform-origin:210px 410px;">
-            <!-- layered trunk and fine branches -->
-            <path d="M205 410 C198 360 194 318 201 275 C207 238 197 211 184 187" stroke="#68462f" stroke-width="22" fill="none" stroke-linecap="round"/>
-            <path d="M207 408 C211 355 216 313 212 276 C208 239 222 218 239 190" stroke="#8a6248" stroke-width="12" fill="none" stroke-linecap="round"/>
-            <path d="M199 315 C175 292 151 280 119 274 C96 270 79 256 66 239" stroke="#6e4c34" stroke-width="11" fill="none" stroke-linecap="round"/>
-            <path d="M202 285 C173 267 151 247 132 222 C116 202 96 193 76 188" stroke="#8a6248" stroke-width="8" fill="none" stroke-linecap="round"/>
-            <path d="M212 300 C242 283 268 273 296 274 C320 275 341 264 356 245" stroke="#6e4c34" stroke-width="10" fill="none" stroke-linecap="round"/>
-            <path d="M216 265 C247 246 265 223 279 199 C291 179 310 168 332 164" stroke="#8a6248" stroke-width="8" fill="none" stroke-linecap="round"/>
-            <path d="M197 247 C176 226 161 202 155 178 C149 157 135 142 118 132" stroke="#6e4c34" stroke-width="7" fill="none" stroke-linecap="round"/>
-            <path d="M229 231 C247 210 251 184 248 160 C246 140 256 122 274 109" stroke="#6e4c34" stroke-width="7" fill="none" stroke-linecap="round"/>
-            <path d="M120 274 C112 253 103 236 88 221 M296 274 C303 252 316 234 333 219 M279 199 C265 185 259 169 258 151 M155 178 C168 160 175 143 174 126" stroke="#8a6248" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-
-            <path d="M201 405 C199 348 202 306 207 278" stroke="#a87959" stroke-width="3" fill="none" opacity=".7"/>
-            <path d="M207 278 C188 260 171 239 158 214 M212 276 C233 258 252 241 266 217" stroke="#b48666" stroke-width="2.5" fill="none" opacity=".65"/>
-
-            <!-- soft blossom mass -->
-            <circle cx="205" cy="175" r="122" fill="url(#blossomGlow)" opacity=".55"/>
-            <g opacity=".96">
-              <circle cx="106" cy="208" r="50" fill="#f5bdd4"/><circle cx="145" cy="157" r="55" fill="#fadce9"/>
-              <circle cx="198" cy="119" r="61" fill="#f7c4da"/><circle cx="257" cy="142" r="57" fill="#e88bb2"/>
-              <circle cx="304" cy="195" r="54" fill="#f0a8c4"/><circle cx="277" cy="238" r="55" fill="#f7c4da"/>
-              <circle cx="207" cy="208" r="67" fill="#ef9fbe"/><circle cx="143" cy="237" r="42" fill="#f0a8c4"/>
-              <circle cx="337" cy="235" r="34" fill="#e88bb2"/><circle cx="79" cy="242" r="31" fill="#f7c4da"/>
-              <circle cx="246" cy="88" r="34" fill="#fadce9"/><circle cx="116" cy="135" r="31" fill="#f7c4da"/>
-            </g>
-
-            <!-- individual cherry blossoms for detail -->
-            <g class="sakura-blooms" fill="#fff6fa" stroke="#d6789f" stroke-width="1.1">
-              <g transform="translate(105 183) scale(.8)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(154 137) scale(.72)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(204 102) scale(.9)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(258 129) scale(.75)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
-              <g transform="translate(302 184) scale(.8)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(272 223) scale(.68)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
-              <g transform="translate(132 226) scale(.65)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(232 176) scale(.62)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(183 212) scale(.55)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
-            </g>
-
-            <g fill="#fff6fa" opacity=".72">
-              <circle cx="125" cy="157" r="2.5"/><circle cx="180" cy="126" r="3"/><circle cx="223" cy="145" r="2.3"/>
-              <circle cx="284" cy="159" r="2.7"/><circle cx="321" cy="210" r="2.2"/><circle cx="153" cy="205" r="2.4"/>
-              <circle cx="244" cy="238" r="2.5"/><circle cx="93" cy="224" r="2.2"/>
-            </g>
-
-            <!-- extra fine detail: bark rings + a few more blossom sprigs for richness -->
-            <path d="M197 392 C201 388 205 388 209 392M195 370 C200 366 206 366 211 370M198 350 C202 347 207 347 211 350" stroke="#5e4230" stroke-width="1.4" fill="none" opacity=".55" stroke-linecap="round"/>
-            <g class="sakura-blooms" fill="#fff6fa" stroke="#d6789f" stroke-width="1.1">
-              <g transform="translate(90 260) scale(.6)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-              <g transform="translate(320 220) scale(.58)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#d6789f"/></g>
-              <g transform="translate(168 95) scale(.5)"><circle cx="0" cy="-8" r="6"/><circle cx="7" cy="-2" r="6"/><circle cx="4" cy="7" r="6"/><circle cx="-4" cy="7" r="6"/><circle cx="-7" cy="-2" r="6"/><circle cx="0" cy="0" r="3" fill="#e88bb2"/></g>
-            </g>
-            <g fill="#fff6fa" opacity=".65">
-              <circle cx="100" cy="190" r="2"/><circle cx="310" cy="170" r="2.3"/><circle cx="205" cy="260" r="2.1"/><circle cx="162" cy="165" r="1.9"/>
-            </g>
-          </g>
-          <circle id="treeHitArea" cx="205" cy="175" r="140" fill="transparent" style="cursor:pointer"/>
-
-          <g class="floating-petal-1" style="transform-origin:70px 120px;">
-            <path d="M70 118C67 120 65 124 67 128C68.5 130.5 70 131 70 131C70 131 71.5 130.5 73 128C75 124 73 120 70 118Z" fill="#f0a8c4"/>
-          </g>
-          <g class="floating-petal-2" style="transform-origin:340px 100px;">
-            <path d="M340 98C337 100 335 104 337 108C338.5 110.5 340 111 340 111C340 111 341.5 110.5 343 108C345 104 343 100 340 98Z" fill="#e88bb2"/>
-          </g>
-          <g class="floating-petal-3" style="transform-origin:60px 260px;">
-            <path d="M60 258C57 260 55 264 57 268C58.5 270.5 60 271 60 271C60 271 61.5 270.5 63 268C65 264 63 260 60 258Z" fill="#f7c4da"/>
-          </g>
-        </svg>
-        <div id="treeShed"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="features">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">چرا زیران؟</div>
-        <h2 class="section-title">یه سرور که واقعاً بهش رسیدگی می‌شه</h2>
-        <p class="section-desc">این چیزیه که زیران رو از خیلی سرورهای دیگه جدا می‌کنه.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-box">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
-          <h3>پینگ پایین</h3>
-          <p>هاست قدرتمند اروپایی برای کمترین تأخیر ممکن برای بازیکن‌های ایرانی.</p>
-        </div>
-        <div class="feature-box">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <h3>امنیت بالا</h3>
-          <p>رمزهای هش‌شده، محافظت در برابر بروت‌فورس و بک‌آپ منظم از دیتای بازیکن‌ها.</p>
-        </div>
-        <div class="feature-box">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4v16M4 4h13l-2 4 2 4H4"/></svg>
-          <h3>آپدیت مداوم</h3>
-          <p>محتوای جدید، ایونت‌های فصلی و بهبود مستمر حالت‌های بازی.</p>
-        </div>
-        <div class="feature-box">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-          <h3>تیم پشتیبانی فعال</h3>
-          <p>ادمین‌های زیران همیشه توی دیسکورد و تلگرام در دسترسن.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="telegram-cta-section page-section" id="telegram-cta">
-    <div class="wrap">
-      <div class="telegram-site-card">
-        <div class="telegram-site-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 3.5 3.2 10.6c-.9.35-.88 1.63.03 1.94l4.65 1.58 1.74 5.73c.28.92 1.45 1.2 2.08.5l2.63-2.93 4.6 3.37c.78.57 1.88.13 2.03-.83L23.1 5.02c.16-.99-.67-1.88-1.6-1.52Z"/><path d="m7.88 14.12 9.58-7.1-7.3 8.05"/></svg>
-        </div>
-        <div class="telegram-site-copy">
-          <span class="telegram-kicker">ارتباط سریع با زیران</span>
-          <h2>بات تلگرامی Zyran</h2>
-          <p>از طریق بات تلگرامی به امکانات و اطلاع‌رسانی‌های زیران دسترسی داشته باش.</p>
-        </div>
-        <a class="telegram-site-btn" href="telegram-bot.html">ورود به بات <span>←</span></a>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="modes-preview">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">حالت‌های بازی</div>
-        <h2 class="section-title">همین حالا وارد شو، چیزی برای هر سلیقه هست</h2>
-        <p class="section-desc">دو حالت فعال داریم و حالت‌های بیشتری هم در راهن. برای جزئیات کامل، صفحه‌ی حالت‌های بازی رو ببین.</p>
-      </div>
-      <div class="modes-grid">
-        <div class="mode-card">
-          <span class="mode-badge live">فعال</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f0a8c4" stroke-width="1.8"><path d="M3 20h18M6 20V10l6-6 6 6v10M9 20v-6h6v6"/></svg>
-          <h3>بدوارز</h3>
-          <p>جزیره‌ات را دفاع کن، تخم‌مرغ رقیب را نابود کن و آخرین بازمانده باش. نسخه‌ی ۱.۸.۹.</p>
-        </div>
-        <div class="mode-card">
-          <span class="mode-badge live">فعال</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#6f9273" stroke-width="1.8"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
-          <h3>سروایوال</h3>
-          <p>یک دنیای وسیع برای ساخت، جمع‌آوری منابع و همکاری با بقیه‌ی بازیکن‌ها. نسخه‌ی ۱.۲۶.۲.</p>
-        </div>
-        <div class="mode-card">
-          <span class="mode-badge soon">به‌زودی</span>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#c9c0ba" stroke-width="1.8"><path d="M4 4h16v16H4zM4 10h16M10 4v16"/></svg>
-          <h3>حالت‌های بیشتر</h3>
-          <p>اسکای‌بلاک، فکشنز و چند حالت دیگر به‌زودی اضافه می‌شوند.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="admins">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">تیم ادمین</div>
-        <h2 class="section-title">آدم‌های پشت زیران</h2>
-        <p class="section-desc">اگه توی سرور مشکلی داشتی یا سوالی بود، این آدم‌ها همیشه در دسترسن.</p>
-      </div>
-      <div class="admins-grid">
-        <div class="admin-person">
-          <div class="admin-avatar">آ</div>
-          <div>
-            <div class="real-name">آرشام</div>
-            <span class="game-name">KRATOS_GOD3</span>
+    <div class="tab-content">
+      <!-- HTML -->
+      <div class="tab-pane fade show active" id="c-html">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 صفحه‌ی سلام دنیا</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">&lt;!DOCTYPE html&gt;</span>
+<span class="kw">&lt;html</span> <span class="fn">lang</span>=<span class="str">"fa"</span> <span class="fn">dir</span>=<span class="str">"rtl"</span><span class="kw">&gt;</span>
+<span class="kw">&lt;head&gt;</span>
+  <span class="kw">&lt;meta</span> <span class="fn">charset</span>=<span class="str">"UTF-8"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;title&gt;</span>سلام دنیا<span class="kw">&lt;/title&gt;</span>
+<span class="kw">&lt;/head&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+  <span class="kw">&lt;h1&gt;</span>سلام از زیرن!<span class="kw">&lt;/h1&gt;</span>
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></pre>
           </div>
-          <span class="admin-status online" data-admin="آرشام"><span class="dot"></span>آنلاین</span>
-        </div>
-        <div class="admin-person">
-          <div class="admin-avatar">ا</div>
-          <div>
-            <div class="real-name">احمد رضا حیدری</div>
-            <span class="game-name">LOCUST</span>
-          </div>
-          <span class="admin-status offline" data-admin="احمد رضا حیدری"><span class="dot"></span>آفلاین</span>
-          <button class="ping-btn" data-admin="احمد رضا حیدری">صدا زدن</button>
-        </div>
-        <div class="admin-person">
-          <div class="admin-avatar">ا</div>
-          <div>
-            <div class="real-name">احمد رضا خشنودمنش</div>
-            <span class="game-name">Zizigelo</span>
-          </div>
-          <span class="admin-status offline" data-admin="احمد رضا خشنودمنش"><span class="dot"></span>آفلاین</span>
-          <button class="ping-btn" data-admin="احمد رضا خشنودمنش">صدا زدن</button>
-        </div>
-      </div>
-      <p style="font-size:12.5px; color:var(--cream-dim); margin-top:18px;">وضعیت آنلاین بودن ادمین‌ها به‌صورت زنده از سرور تلگرام/دیسکورد گرفته می‌شه؛ الان یک نمونه‌ی نمایشیه.</p>
-    </div>
-  </section>
-
-  <section id="leaderboard">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">لیدربرد</div>
-        <h2 class="section-title">برترین‌های زیران</h2>
-        <p class="section-desc">هرکی همینجاست، واقعاً براش زحمت کشیده. این یک نمونه‌ی نمایشیه؛ بعد از وصل شدن به دیتابیس واقعی سرور بروز می‌شه.</p>
-      </div>
-
-      <div class="lb-tabs" id="lbTabs">
-        <button class="tab-btn active" data-lb="online">بیشترین آنلاین</button>
-        <button class="tab-btn" data-lb="rich">ثروتمندترین</button>
-        <button class="tab-btn" data-lb="wins">بیشترین برد بدوارز</button>
-        <button class="tab-btn" data-lb="losses">بیشترین باخت بدوارز</button>
-        <button class="tab-btn" data-lb="deaths">بیشترین مرگ</button>
-      </div>
-
-      <div class="lb-panel active" data-lbpanel="online">
-        <div class="lb-table">
-          <div class="lb-row"><span class="lb-rank">۱</span><span class="lb-avatar">K</span><span class="lb-name">KRATOS_GOD3</span><span class="lb-value">۳۱۲ ساعت</span></div>
-          <div class="lb-row"><span class="lb-rank">۲</span><span class="lb-avatar">S</span><span class="lb-name">SakuraFall_98</span><span class="lb-value">۲۷۰ ساعت</span></div>
-          <div class="lb-row"><span class="lb-rank">۳</span><span class="lb-avatar">N</span><span class="lb-name">NightRunner</span><span class="lb-value">۲۴۵ ساعت</span></div>
-          <div class="lb-row"><span class="lb-rank">۴</span><span class="lb-avatar">Z</span><span class="lb-name">Zizigelo</span><span class="lb-value">۲۱۰ ساعت</span></div>
-          <div class="lb-row"><span class="lb-rank">۵</span><span class="lb-avatar">L</span><span class="lb-name">LOCUST</span><span class="lb-value">۱۹۸ ساعت</span></div>
-        </div>
-      </div>
-
-      <div class="lb-panel" data-lbpanel="rich">
-        <div class="lb-table">
-          <div class="lb-row"><span class="lb-rank">۱</span><span class="lb-avatar">M</span><span class="lb-name">MochiBlade</span><span class="lb-value">۸۴,۰۰۰ سکه</span></div>
-          <div class="lb-row"><span class="lb-rank">۲</span><span class="lb-avatar">K</span><span class="lb-name">KRATOS_GOD3</span><span class="lb-value">۷۱,۵۰۰ سکه</span></div>
-          <div class="lb-row"><span class="lb-rank">۳</span><span class="lb-avatar">H</span><span class="lb-name">HanamiQueen</span><span class="lb-value">۶۵,۲۰۰ سکه</span></div>
-          <div class="lb-row"><span class="lb-rank">۴</span><span class="lb-avatar">R</span><span class="lb-name">RyuSilent</span><span class="lb-value">۵۸,۹۰۰ سکه</span></div>
-          <div class="lb-row"><span class="lb-rank">۵</span><span class="lb-avatar">Z</span><span class="lb-name">Zizigelo</span><span class="lb-value">۴۹,۰۰۰ سکه</span></div>
-        </div>
-      </div>
-
-      <div class="lb-panel" data-lbpanel="wins">
-        <div class="lb-table">
-          <div class="lb-row"><span class="lb-rank">۱</span><span class="lb-avatar">L</span><span class="lb-name">LOCUST</span><span class="lb-value">۴۱۲ برد</span></div>
-          <div class="lb-row"><span class="lb-rank">۲</span><span class="lb-avatar">K</span><span class="lb-name">KRATOS_GOD3</span><span class="lb-value">۳۸۰ برد</span></div>
-          <div class="lb-row"><span class="lb-rank">۳</span><span class="lb-avatar">B</span><span class="lb-name">BlossomBreaker</span><span class="lb-value">۳۴۵ برد</span></div>
-          <div class="lb-row"><span class="lb-rank">۴</span><span class="lb-avatar">S</span><span class="lb-name">SakuraFall_98</span><span class="lb-value">۳۰۱ برد</span></div>
-          <div class="lb-row"><span class="lb-rank">۵</span><span class="lb-avatar">N</span><span class="lb-name">NightRunner</span><span class="lb-value">۲۸۸ برد</span></div>
-        </div>
-      </div>
-
-      <div class="lb-panel" data-lbpanel="losses">
-        <div class="lb-table">
-          <div class="lb-row"><span class="lb-rank">۱</span><span class="lb-avatar">P</span><span class="lb-name">PixelRonin</span><span class="lb-value">۲۹۰ باخت</span></div>
-          <div class="lb-row"><span class="lb-rank">۲</span><span class="lb-avatar">M</span><span class="lb-name">MochiBlade</span><span class="lb-value">۲۶۴ باخت</span></div>
-          <div class="lb-row"><span class="lb-rank">۳</span><span class="lb-avatar">R</span><span class="lb-name">RyuSilent</span><span class="lb-value">۲۴۰ باخت</span></div>
-          <div class="lb-row"><span class="lb-rank">۴</span><span class="lb-avatar">H</span><span class="lb-name">HanamiQueen</span><span class="lb-value">۲۱۹ باخت</span></div>
-          <div class="lb-row"><span class="lb-rank">۵</span><span class="lb-avatar">N</span><span class="lb-name">NightRunner</span><span class="lb-value">۲۰۵ باخت</span></div>
-        </div>
-      </div>
-
-      <div class="lb-panel" data-lbpanel="deaths">
-        <div class="lb-table">
-          <div class="lb-row"><span class="lb-rank">۱</span><span class="lb-avatar">B</span><span class="lb-name">BlossomBreaker</span><span class="lb-value">۱,۰۴۰ مرگ</span></div>
-          <div class="lb-row"><span class="lb-rank">۲</span><span class="lb-avatar">P</span><span class="lb-name">PixelRonin</span><span class="lb-value">۹۸۸ مرگ</span></div>
-          <div class="lb-row"><span class="lb-rank">۳</span><span class="lb-avatar">S</span><span class="lb-name">SakuraFall_98</span><span class="lb-value">۹۲۰ مرگ</span></div>
-          <div class="lb-row"><span class="lb-rank">۴</span><span class="lb-avatar">K</span><span class="lb-name">KRATOS_GOD3</span><span class="lb-value">۸۷۵ مرگ</span></div>
-          <div class="lb-row"><span class="lb-rank">۵</span><span class="lb-avatar">Z</span><span class="lb-name">Zizigelo</span><span class="lb-value">۸۴۰ مرگ</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="faq-section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="section-tag">سؤالات متداول</div>
-        <h2 class="section-title">جواب سؤال‌هایی که زیاد پرسیده می‌شن</h2>
-        <p class="section-desc">۱۰ سؤال کاربردی برای اینکه سریع‌تر با زیران آشنا بشی و وارد بازی بشی.</p>
-      </div>
-      <div class="faq-grid">
-        <details class="faq-item">
-          <summary><span>چطور وارد سرور زیران بشم؟</span><span class="faq-plus">+</span></summary>
-          <p>ماینکرفت را با نسخه‌ی سازگار اجرا کن، از بخش Multiplayer سرور جدید بساز و آدرس سرور را وارد کن. راهنمای کامل اتصال در صفحه‌ی «راهنما» قرار دارد.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>آی‌پی سرور زیران چیه؟</span><span class="faq-plus">+</span></summary>
-          <p>آی‌پی سرور در بخش اصلی سایت نمایش داده می‌شود و با دکمه‌ی «کپی آی‌پی» می‌توانی آن را سریع کپی کنی.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>بدوارز با چه نسخه‌ای اجرا می‌شود؟</span><span class="faq-plus">+</span></summary>
-          <p>بدوارز زیران برای نسخه‌ی ۱.۸.۹ معرفی شده است. اگر نسخه یا تنظیمات اتصال تغییر کند، اطلاعیه‌ی جدید در سایت قرار می‌گیرد.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>سروایوال چه نسخه‌ای دارد؟</span><span class="faq-plus">+</span></summary>
-          <p>در حال حاضر سروایوال با نسخه‌ی ۱.۲۶.۲ معرفی شده است. برای جزئیات و تغییرات نسخه‌ها، صفحه‌ی حالت‌های بازی را بررسی کن.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>اگر در سرور باگ پیدا کردم کجا گزارش بدم؟</span><span class="faq-plus">+</span></summary>
-          <p>می‌توانی از بخش «انتقادات و پیشنهادات» همین صفحه استفاده کنی و مشکل را با توضیح دقیق، نام حالت بازی و در صورت امکان مراحل بازتولید گزارش کنی.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>آیا ادمین‌ها پاسخ‌گو هستند؟</span><span class="faq-plus">+</span></summary>
-          <p>تیم ادمین برای پشتیبانی در نظر گرفته شده و وضعیت نمایشی اعضای تیم در بخش ادمین‌های صفحه اصلی دیده می‌شود.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>چه حالت‌های بازی دیگری قرار است اضافه شود؟</span><span class="faq-plus">+</span></summary>
-          <p>اسکای‌بلاک، فکشنز، ایونت‌های فصلی و چند حالت دیگر در بخش حالت‌های بازی به‌عنوان گزینه‌های در حال توسعه معرفی شده‌اند.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>برای بازی کردن باید اکانت بسازم؟</span><span class="faq-plus">+</span></summary>
-          <p>ساخت حساب سایت برای امکانات حساب کاربری و بخش‌های مرتبط است؛ روش دقیق ورود به سرور را از راهنمای اتصال دنبال کن.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>آیا می‌توانم پیشنهاد یک گیم‌مود جدید بدهم؟</span><span class="faq-plus">+</span></summary>
-          <p>بله. پیشنهادت را در بخش انتقادات و پیشنهادات بنویس و توضیح بده چه چیزی آن حالت را جذاب می‌کند.</p>
-        </details>
-        <details class="faq-item">
-          <summary><span>حمایت مالی از سرور صرف چه چیزهایی می‌شود؟</span><span class="faq-plus">+</span></summary>
-          <p>طبق توضیحات سایت، حمایت‌ها برای هزینه‌های هاست، رویدادهای جدید و توسعه‌ی حالت‌های بیشتر در نظر گرفته شده‌اند.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section id="feedback" class="feedback-section">
-    <div class="wrap">
-      <div class="feedback-panel">
-        <div class="feedback-copy">
-          <div class="section-tag">صدای بازیکن‌ها</div>
-          <h2 class="section-title">انتقادات و پیشنهادات</h2>
-          <p class="section-desc">اینجا جای گفتن چیزیه که فکر می‌کنی زیران باید بهترش کنه. باگ، پیشنهاد گیم‌مود، مشکل رابط کاربری یا هر ایده‌ای داری بنویس.</p>
-          <div class="feedback-points">
-            <span>✓ باگ‌ها</span><span>✓ پیشنهاد گیم‌مود</span><span>✓ ایده‌های جدید</span>
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 اتصال بوت‌استرپ RTL (محلی)</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">&lt;!--</span> <span class="com">CSS بوت‌استرپ راست‌چین (دانلود شده)</span> <span class="kw">--&gt;</span>
+<span class="kw">&lt;link</span> <span class="fn">rel</span>=<span class="str">"stylesheet"</span> <span class="fn">href</span>=<span class="str">"vendor/bootstrap/css/bootstrap.rtl.min.css"</span><span class="kw">&gt;</span>
+<span class="kw">&lt;!--</span> <span class="com">جاوااسکریپت بوت‌استرپ</span> <span class="kw">--&gt;</span>
+<span class="kw">&lt;script</span> <span class="fn">src</span>=<span class="str">"vendor/bootstrap/js/bootstrap.bundle.min.js"</span><span class="kw">&gt;&lt;/script&gt;</span></pre>
           </div>
         </div>
-        <form class="feedback-form" id="feedbackForm">
-          <label>موضوع
-            <select id="feedbackType" required>
-              <option value="">انتخاب کن</option>
-              <option>گزارش باگ</option>
-              <option>پیشنهاد گیم‌مود</option>
-              <option>پیشنهاد برای سایت</option>
-              <option>انتقاد</option>
-              <option>سایر</option>
-            </select>
-          </label>
-          <label>نام یا نام کاربری <span>(اختیاری)</span>
-            <input id="feedbackName" type="text" maxlength="40" placeholder="مثلاً KRATOS_GOD3">
-          </label>
-          <label>متن پیام
-            <textarea id="feedbackMessage" maxlength="1000" rows="5" required placeholder="چی رو دوست داری بهتر یا متفاوت ببینی؟"></textarea>
-          </label>
-          <button type="submit" class="feedback-submit">ارسال بازخورد <span>→</span></button>
-          <small>این فرم فعلاً پیام را در همین مرورگر ثبت می‌کند؛ برای ارسال به تیم، اتصال بک‌اند یا تلگرام/دیسکورد باید بعداً اضافه شود.</small>
-        </form>
       </div>
-    </div>
-  </section>
-
-
-  <section id="donate-preview">
-    <div class="wrap">
-      <div class="donate-strip">
-        <div class="liquid-blob moss" style="width:220px; height:220px; top:-60px; left:-40px;"></div>
-        <div class="liquid-blob sakura" style="width:180px; height:180px; bottom:-70px; right:-30px; opacity:0.22;"></div>
-        <div>
-          <h3>هزینه‌ی سرور رو با هم تأمین کنیم 💐</h3>
-          <p>هر حمایت، صرف هاست بهتر، رویدادهای جدید و ساخت حالت‌های بیشتر برای زیران می‌شه.</p>
+      <!-- CSS -->
+      <div class="tab-pane fade" id="c-css">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 دکمه‌ی گرادیانت خفن</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">.btn-gradient</span> {
+  <span class="fn">background</span>: <span class="fn">linear-gradient</span>(<span class="num">135deg</span>, <span class="str">#7c5cff</span>, <span class="str">#5ad1ff</span>);
+  <span class="fn">color</span>: <span class="str">#fff</span>;
+  <span class="fn">padding</span>: <span class="num">12px</span> <span class="num">24px</span>;
+  <span class="fn">border</span>: <span class="num">0</span>;
+  <span class="fn">border-radius</span>: <span class="num">14px</span>;
+  <span class="fn">transition</span>: <span class="fn">transform</span> <span class="num">.2s</span>;
+}
+<span class="kw">.btn-gradient:hover</span> { <span class="fn">transform</span>: <span class="fn">translateY</span>(<span class="num">-2px</span>); }</pre>
+          </div>
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 کارت شیشه‌ای + گرید بوت‌استرپ</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"container py-5"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"row g-4"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"col-md-4"</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"card shadow-sm"</span><span class="kw">&gt;</span>
+        <span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"card-body"</span><span class="kw">&gt;</span>
+          <span class="kw">&lt;h5</span> <span class="fn">class</span>=<span class="str">"card-title"</span><span class="kw">&gt;</span>عنوان کارت<span class="kw">&lt;/h5&gt;</span>
+          <span class="kw">&lt;p</span> <span class="fn">class</span>=<span class="str">"card-text"</span><span class="kw">&gt;</span>متن نمونه...<span class="kw">&lt;/p&gt;</span>
+        <span class="kw">&lt;/div&gt;</span>
+      <span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span></pre>
+          </div>
         </div>
-        <a href="donate.html" class="donate-btn">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 5.9 4 4.4 7.7C19.5 16.4 12 21 12 21Z"/></svg>
-          حمایت از سرور
-        </a>
+      </div>
+      <!-- JS -->
+      <div class="tab-pane fade" id="c-js">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 تغییر تم تاریک/روشن</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">const</span> toggle = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="str">'themeToggle'</span>);
+toggle.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, () => {
+  <span class="kw">const</span> html = <span class="fn">document</span>.documentElement;
+  <span class="kw">const</span> cur = html.<span class="fn">getAttribute</span>(<span class="str">'data-bs-theme'</span>);
+  <span class="kw">const</span> next = cur === <span class="str">'dark'</span> ? <span class="str">'light'</span> : <span class="str">'dark'</span>;
+  html.<span class="fn">setAttribute</span>(<span class="str">'data-bs-theme'</span>, next);
+  localStorage.<span class="fn">setItem</span>(<span class="str">'theme'</span>, next);
+});</pre>
+          </div>
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 کپی در کلیپ‌بورد</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">function</span> <span class="fn">copyCode</span>(btn) {
+  <span class="kw">const</span> code = btn.parentElement.innerText.<span class="fn">replace</span>(<span class="str">'کپی'</span>,<span class="str">''</span>);
+  navigator.clipboard.<span class="fn">writeText</span>(code);
+  btn.textContent = <span class="str">'کپی شد ✓'</span>;
+  <span class="fn">setTimeout</span>(() => btn.textContent = <span class="str">'کپی'</span>, <span class="num">1500</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+      <!-- Python -->
+      <div class="tab-pane fade" id="c-py">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 بازی حدس عدد</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">import</span> random
+secret = random.<span class="fn">randint</span>(<span class="num">1</span>, <span class="num">100</span>)
+<span class="kw">while</span> <span class="num">True</span>:
+    g = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"حدس بزن ۱ تا ۱۰۰: "</span>))
+    <span class="kw">if</span> g == secret:
+        <span class="fn">print</span>(<span class="str">"آفرین! 🎉"</span>); <span class="kw">break</span>
+    <span class="kw">elif</span> g &lt; secret: <span class="fn">print</span>(<span class="str">"برو بالاتر ⬆️"</span>)
+    <span class="kw">else</span>: <span class="fn">print</span>(<span class="str">"برو پایین‌تر ⬇️"</span>)</pre>
+          </div>
+          <div class="col-lg-6">
+            <h6 class="fw-bold mb-2">🔹 وب‌اسکرپینگ ساده با requests</h6>
+<pre class="code-block"><button class="copy-code" onclick="copyCode(this)">کپی</button><span class="kw">import</span> requests
+<span class="kw">from</span> bs4 <span class="kw">import</span> BeautifulSoup
+
+r = requests.<span class="fn">get</span>(<span class="str">"https://example.com"</span>)
+soup = <span class="fn">BeautifulSoup</span>(r.text, <span class="str">"html.parser"</span>)
+<span class="fn">print</span>(soup.title.string)</pre>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-</main>
-
-<div class="float-donate-wrap">
-  <span class="float-donate-ring"></span>
-  <span class="float-donate-ring ring2"></span>
-  <a href="donate.html" class="float-donate">
-    <span class="float-donate-emoji">💖</span>
-    <span class="float-donate-text">حمایت از زیران</span>
-  </a>
-</div>
-
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-head">
-    <strong>سبد خرید</strong>
-    <button id="cartClose" class="cart-close-btn" aria-label="بستن سبد خرید">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
   </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-foot">
-    <div class="cart-total"><span>جمع کل</span><span id="cartTotal">۰ تومان</span></div>
-    <a href="shop.html" class="checkout-btn" style="display:block; text-align:center;">رفتن به فروشگاه</a>
-  </div>
-</div>
+</section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span class="brand-name pixel">Zyran<span class="dotir">.ir</span></span>
-        <p>سروری برای اونایی که هم عاشق کرفتن، هم عاشق بهار ژاپنی‌ان. یه جامعه‌ی کوچیک و دوستانه، زیر شکوفه‌های گیلاس.</p>
-        <div class="footer-social">
-          <a href="#" class="social-btn" aria-label="تلگرام"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></a>
-          <a href="#" class="social-btn" aria-label="دیسکورد"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+<!-- QUIZ -->
+<section id="quiz" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">آزمون تعاملی</div>
+      <h2 class="section-title mt-2">چقدر برنامه‌نویسی بلدی؟</h2>
+      <p style="color:var(--zy-muted)">یه آزمون کوتاه ۵ سؤالی از مبانی تا بوت‌استرپ. بزن ببینیم چند میشی!</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="glass p-4 p-md-5">
+          <div id="quizBox"></div>
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <span id="quizProgress" style="color:var(--zy-muted);font-size:14px;">سؤال ۱ از ۵</span>
+            <button class="btn btn-zy" id="quizNext" disabled>سؤال بعدی ←</button>
+          </div>
         </div>
       </div>
-      <div class="footer-col">
-        <h5>سرور</h5>
-        <a href="modes.html">حالت‌های بازی</a>
-        <a href="downloads.html">دانلودها</a>
-        <a href="shop.html">فروشگاه</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">ابزارهای کاربردی</div>
+      <h2 class="section-title mt-2">چند ابزار کوچیک که کارت رو راه میندازن</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <h5 class="fw-bold">🔢 شمارنده کاراکتر</h5>
+          <textarea id="cntText" class="search-box mt-2" rows="4" placeholder="متن رو بنویس..."></textarea>
+          <div class="mt-2 d-flex gap-3 fs-6" style="color:var(--zy-muted)">
+            <span>کاراکتر: <b id="cntChars" class="text-gradient">۰</b></span>
+            <span>کلمه: <b id="cntWords" class="text-gradient">۰</b></span>
+            <span>خط: <b id="cntLines" class="text-gradient">۰</b></span>
+          </div>
+        </div>
       </div>
-      <div class="footer-col">
-        <h5>راهنما</h5>
-        <a href="guide.html">نصب و اتصال</a>
-        <a href="about.html">درباره ما</a>
-        <a href="account.html">حساب من</a>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <h5 class="fw-bold">🎨 تولید رنگ هگز</h5>
+          <p style="color:var(--zy-muted);font-size:14px">رنگ تصادفی برای پروژه‌هایت.</p>
+          <div class="d-flex align-items-center gap-3">
+            <div id="colorBox" style="width:80px;height:80px;border-radius:14px;background:#7c5cff;border:1px solid var(--zy-border)"></div>
+            <div>
+              <code id="colorHex" style="font-size:20px;direction:ltr;">#7c5cff</code>
+              <div class="mt-2 d-flex gap-2">
+                <button class="btn btn-outline-zy btn-sm" onclick="randomColor()">🎲 رنگ جدید</button>
+                <button class="btn btn-outline-zy btn-sm" onclick="copyText(document.getElementById('colorHex').innerText)">📋 کپی</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="footer-col footer-cta">
-        <h5>حمایت از زیران</h5>
-        <p>با یه حمایت کوچیک، بهار زیران رو طولانی‌تر کن.</p>
-        <a href="donate.html" class="add-cart-btn" style="display:inline-block; padding:10px 20px;">حمایت کن 💖</a>
+      <div class="col-md-4">
+        <div class="glass p-4 h-100">
+          <h5 class="fw-bold">🔐 تولید رمز عبور</h5>
+          <p style="color:var(--zy-muted);font-size:14px">رمز امن و قوی بساز.</p>
+          <div class="d-flex gap-2 mb-2">
+            <input type="text" id="pwdOut" class="form-control search-box" readonly style="direction:ltr;text-align:left;">
+            <button class="btn btn-zy" onclick="genPwd()">بساز</button>
+          </div>
+          <button class="btn btn-outline-zy btn-sm w-100" onclick="copyText(document.getElementById('pwdOut').value)">📋 کپی رمز</button>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> Zyran.ir — تمام حقوق محفوظ است.</span>
-      <span class="footer-ip">Zyran.ir</span>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-kicker">سؤالات متداول</div>
+      <h2 class="section-title mt-2">چیزایی که زیاد پرسیده می‌شه</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion zy-accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">برنامه‌نویسی رو از کجا شروع کنم؟</button></h2>
+            <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">بهترین نقطه شروع، یادگیری تفکر الگوریتمی با یک زبان ساده مثل پایتون است. بعدش HTML/CSS و بعد بوت‌استرپ و جاوااسکریپت. نقشه‌راه بالای همین سایت همین مسیر رو بهت نشون می‌ده.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">بوت‌استرپ چیه و چرا باید یاد بگیرم؟</button></h2>
+            <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">بوت‌استرپ (Bootstrap) محبوب‌ترین فریم‌ورک CSS دنیاست که با کلاس‌های آماده، سایت‌های زیبا و ریسپانسیو رو خیلی سریع می‌سازی. همین سایت خودمون با بوت‌استرپ ۵.۳.۳ نسخه‌ی RTL (راست‌چین) ساخته شده و به‌صورت لوکال (دانلود شده در هاست) لود می‌شه — پس هیچ لینک شکسته یا وابستگی CDN نداره.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">آیا واقعاً رایگانه؟</button></h2>
+            <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">بله! تمام درس‌ها، کدهای آماده و آزمون‌های زیرن کاملاً رایگان هستند. هدف ما ترویج برنامه‌نویسی بین فارسی‌زبان‌هاست.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">برای یادگیری به چه نرم‌افزاری نیاز دارم؟</button></h2>
+            <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">فقط یک مرورگر (مثل کروم یا فایرفاکس) و یک ویرایشگر کد مثل VS Code. برای پایتون هم نصب Python 3 از سایت رسمی کافیه.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f5">چند ساعت در روز باید تمرین کنم؟</button></h2>
+            <div id="f5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">نکته، پیوستگی‌ست نه ساعت زیاد. روزی ۳۰ تا ۶۰ دقیقه تمرین پیوسته، خیلی بهتر از ۸ ساعت یک روز در هفته است.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f6">چطور در دوره‌ها پیشرفت رو ذخیره کنم؟</button></h2>
+            <div id="f6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">در نسخه‌ی فعلی سایت، همه چیز روی مرورگر تو (localStorage) ذخیره می‌شه. در نسخه‌های آینده سیستم حساب کاربری و ابری اضافه می‌شه.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-5">
+  <div class="container">
+    <div class="glass p-4 p-md-5 text-center" style="background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(90,209,255,.08));">
+      <div class="section-kicker">عضویت در خبرنامه</div>
+      <h2 class="section-title mt-2">از درس‌های جدید باخبر شو</h2>
+      <p style="color:var(--zy-muted)" class="mx-auto">ایمیلت رو بده تا درسنامه‌ها، چالش‌ها و کدهای جدید رو مستقیم دریافت کنی.</p>
+      <form class="row g-2 justify-content-center mt-4" onsubmit="event.preventDefault();document.getElementById('newsMsg').textContent ='✅ عضو شدی! به زیرن خوش اومدی.';this.reset();">
+        <div class="col-md-5"><input type="email" required class="form-control search-box" placeholder="ایمیل شما..."></div>
+        <div class="col-auto"><button class="btn btn-zy" type="submit">عضویت</button></div>
+      </form>
+      <div id="newsMsg" class="mt-3 text-success"></div>
+
+      <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+        <a href="https://github.com/arshamnori/Zyran" target="_blank" rel="noopener" class="btn btn-outline-zy">🐙 گیت‌هاب</a>
+                <a href="mailto:hi@zyran.ir" class="btn btn-outline-zy">📧 ایمیل</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-zy">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="brand-logo">Z</span>
+          <span class="fw-bold fs-4 text-gradient">Zyran</span>
+        </div>
+        <p style="color:var(--zy-muted);font-size:14px;">زیرن، یک سایت آموزش برنامه‌نویسی رایگان و فارسی‌زبان. ساخته‌شده با ❤️، بوت‌استرپ ۵ و فونت وزیرمتن.</p>
+      </div>
+      <div class="col-md-2 col-6">
+        <h6 class="fw-bold mb-3">آموزش‌ها</h6>
+        <ul class="list-unstyled d-flex flex-column gap-2" style="font-size:14px;">
+          <li><a href="#courses">HTML / CSS</a></li>
+          <li><a href="#courses">بوت‌استرپ ۵</a></li>
+          <li><a href="#courses">JavaScript</a></li>
+          <li><a href="#courses">Python</a></li>
+          <li><a href="#courses">React</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-6">
+        <h6 class="fw-bold mb-3">لینک‌ها</h6>
+        <ul class="list-unstyled d-flex flex-column gap-2" style="font-size:14px;">
+          <li><a href="#roadmap">نقشه‌راه</a></li>
+          <li><a href="#playground">کدهای آماده</a></li>
+          <li><a href="#quiz">آزمون</a></li>
+          <li><a href="#faq">سؤالات متداول</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold mb-3">درباره زیرن</h6>
+        <p style="color:var(--zy-muted);font-size:14px;">زیرن (Zyran) یک پروژه‌ی متن‌باز آموزش برنامه‌نویسی است که روی گیت‌هاب میزبانی می‌شود. همه می‌تونن در توسعه‌اش مشارکت کنن.</p>
+      </div>
+    </div>
+    <hr style="border-color:var(--zy-border);margin:30px 0 20px;">
+    <div class="d-flex flex-wrap justify-content-between align-items-center" style="color:var(--zy-muted);font-size:13px;">
+      <span>© ۲۰۲۶ Zyran — تمامی حقوق محفوظ است.</span>
+      <span>ساخته‌شده با ❤️ — Bootstrap 5.3.3 RTL + فونت Vazirmatn</span>
     </div>
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<button class="back-to-top" id="backTop" aria-label="بازگشت به بالا">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
 
-<script src="assets/main.js"></script>
-<script src="assets/cart.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
-  const lbTabs = document.querySelectorAll('#lbTabs .tab-btn');
-  const lbPanels = document.querySelectorAll('.lb-panel');
-  lbTabs.forEach(btn => {
-    btn.addEventListener('click', () => {
-      lbTabs.forEach(b => b.classList.remove('active'));
-      lbPanels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelector(`.lb-panel[data-lbpanel="${btn.dataset.lb}"]`).classList.add('active');
-    });
+// ============ THEME ============
+(function(){
+  let saved = 'dark';
+  try { saved = localStorage.getItem('zy_theme') || 'dark'; } catch(e) {}
+  document.documentElement.setAttribute('data-bs-theme', saved);
+  const t = document.getElementById('themeToggle');
+  if (t) t.addEventListener('click', ()=>{
+    const cur = document.documentElement.getAttribute('data-bs-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-bs-theme', next);
+    try { localStorage.setItem('zy_theme', next); } catch(e) {}
   });
+})();
 
-  document.querySelectorAll('.ping-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      showToast(`پیامت برای ${btn.dataset.admin} ارسال شد، به‌محض آنلاین شدن باهات هماهنگ می‌کنه`);
+// ============ STATS ANIMATION ============
+function animateNum(id, target, dur){
+  dur = dur || 1500;
+  const el = document.getElementById(id);
+  if(!el) return;
+  const start = performance.now();
+  function step(now){
+    const p = Math.min((now-start)/dur, 1);
+    const val = Math.floor(target * (1 - Math.pow(1-p, 3)));
+    el.textContent = val.toLocaleString('fa-IR');
+    if(p<1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString('fa-IR');
+  }
+  requestAnimationFrame(step);
+}
+window.addEventListener('load', function(){
+  const st = document.getElementById('stUsers');
+  if(!st) return;
+  if(!('IntersectionObserver' in window)){ animateNum('stUsers', courses.length); animateNum('stLessons', document.querySelectorAll('.code-block').length); animateNum('stProjects', quiz.length); animateNum('stLang', document.querySelectorAll('#roadmap .rm-item').length); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateNum('stUsers', courses.length);
+        animateNum('stLessons', document.querySelectorAll('.code-block').length);
+        animateNum('stProjects', quiz.length);
+        animateNum('stLang', document.querySelectorAll('#roadmap .rm-item').length);
+        io.disconnect();
+      }
     });
   });
+  io.observe(st);
+});
+
+// ============ COURSES DATA ============
+const courses = [
+  {t:'مبانی برنامه‌نویسی با پایتون', e:'🐍', cat:'python', lvl:'مقدماتی', desc:'از نصب پایتون تا مبانی الگوریتم، شرط، حلقه، تابع و پروژه‌های کوچک.', lessons:18, dur:'۱۲ ساعت', prog:0},
+  {t:'HTML5 از صفر', e:'📄', cat:'web', lvl:'مقدماتی', desc:'ساخت صفحات وب با تگ‌های معنایی، فرم، جدول و سئوی پایه.', lessons:12, dur:'۶ ساعت', prog:0},
+  {t:'CSS3 و ریسپانسیو', e:'🎨', cat:'frontend', lvl:'مقدماتی', desc:'استایل‌دهی، فونت، رنگ، فلاکس، گرید و طراحی ریسپانسیو.', lessons:14, dur:'۸ ساعت', prog:0},
+  {t:'بوت‌استرپ ۵ (Bootstrap 5 RTL)', e:'🅱️', cat:'frontend', lvl:'مقدماتی', desc:'بوت‌استرپ دانلود شده و محلی؛ گرید، کامپوننت‌ها، فرم‌ها و راست‌چین.', lessons:16, dur:'۹ ساعت', prog:0},
+  {t:'جاوااسکریپت برای همه', e:'⚡', cat:'frontend', lvl:'متوسط', desc:'متغیرها، توابع، آرایه‌ها، DOM، ایونت‌ها، Promise و async/await.', lessons:22, dur:'۱۶ ساعت', prog:0},
+  {t:'ReactJS از مبتدی تا پیشرفته', e:'⚛️', cat:'frontend', lvl:'متوسط', desc:'کامپوننت‌ها، هوک‌ها (useState, useEffect)، روتر و پروژه‌های واقعی.', lessons:24, dur:'۲۰ ساعت', prog:0},
+  {t:'Node.js و Express', e:'🟢', cat:'backend', lvl:'پیشرفته', desc:'ساخت API و سرور بک‌اند، JWT، دیتابیس MongoDB.', lessons:20, dur:'۱۸ ساعت', prog:0},
+  {t:'طراحی وب با Figma', e:'🎯', cat:'web', lvl:'مقدماتی', desc:'اصول UI/UX و طراحی قبل از کدنویسی.', lessons:10, dur:'۵ ساعت', prog:0},
+  {t:'گیت و گیت‌هاب', e:'🐙', cat:'web', lvl:'مقدماتی', desc:'کنترل نسخه، کامیت، برنچ، پول‌ریکوئست و کار تیمی.', lessons:8, dur:'۴ ساعت', prog:0},
+  {t:'پایتون پیشرفته و OOP', e:'🧠', cat:'python', lvl:'پیشرفته', desc:'کلاس، ارث‌بری، دکوراتور، جنریتور و طراحی‌الگو.', lessons:18, dur:'۱۵ ساعت', prog:0},
+  {t:'Django — فریم‌ورک پایتون', e:'🎸', cat:'backend', lvl:'پیشرفته', desc:'ساخت وب‌اپلیکیشن کامل با جنگو، ادمین، ORM و دیتابیس.', lessons:22, dur:'۲۰ ساعت', prog:0},
+  {t:'ساخت اپ موبایل با React Native', e:'📱', cat:'mobile', lvl:'پیشرفته', desc:'اپ اندروید/آی‌اواس با یک کدبیس.', lessons:20, dur:'۲۲ ساعت', prog:0}
+];
+
+function courseCard(c){
+  return '<div class="col-md-6 col-lg-4">' +
+    '<div class="glass course-card">' +
+      '<div class="d-flex justify-content-between align-items-start mb-3">' +
+        '<div class="emoji">'+c.e+'</div>' +
+        '<span class="level level-'+c.lvl+'">'+c.lvl+'</span>' +
+      '</div>' +
+      '<h5 class="fw-bold mb-2">'+c.t+'</h5>' +
+      '<p style="color:var(--zy-muted);font-size:14px;min-height:48px;">'+c.desc+'</p>' +
+      '<div class="d-flex justify-content-between align-items-center mt-3" style="font-size:13px;color:var(--zy-muted)">' +
+        '<span>📚 '+c.lessons.toLocaleString('fa-IR')+' درس</span>' +
+        '<span>⏱ '+c.dur+'</span>' +
+      '</div>' +
+      '<button class="btn btn-outline-zy w-100 mt-3" onclick="startCourse(\''+c.t.replace(/'/g,"\\'")+'\')">📝 به‌زودی — ثبت علاقه</button>' +
+    '</div></div>';
+}
+
+function renderCourses(filter, q){
+  filter = filter || 'all';
+  q = (q || '').trim().toLowerCase();
+  const grid = document.getElementById('coursesGrid');
+  if(!grid) return;
+  const list = courses.filter(function(c){
+    const catOk = filter==='all' || c.cat===filter;
+    const qOk = !q || c.t.toLowerCase().indexOf(q) !== -1 || c.desc.toLowerCase().indexOf(q) !== -1;
+    return catOk && qOk;
+  });
+  if(!list.length){
+    grid.innerHTML = '<p class="text-center w-100 py-5" style="color:var(--zy-muted)">نتیجه‌ای یافت نشد 😅</p>';
+    return;
+  }
+  grid.innerHTML = list.map(courseCard).join('');
+}
+
+function startCourse(name){
+  alert('دوره «'+name+'» در دست تولید است 🚀\nتا منتشر شدن، بخش «کدهای آماده» و «آزمون» رو امتحان کن.');
+}
+
+window.addEventListener('load', function(){
+  renderCourses();
+  const search = document.getElementById('courseSearch');
+  if(search){
+    search.addEventListener('input', function(e){
+      const active = document.querySelector('#courseFilter .btn.active');
+      renderCourses(active ? active.dataset.filter : 'all', e.target.value);
+    });
+  }
+  document.querySelectorAll('#courseFilter button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#courseFilter button').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      const s = document.getElementById('courseSearch');
+      renderCourses(b.dataset.filter, s ? s.value : '');
+    });
+  });
+});
+
+// ============ COPY CODE ============
+function copyCode(btn){
+  var text = btn.parentElement.innerText;
+  text = text.replace(/^کپی\s*/, '').replace(/^کپی شد ✓\s*/, '');
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent = 'کپی شد ✓';
+      setTimeout(function(){btn.textContent ='کپی';},1500);
+    });
+  }
+}
+function copyText(t){ if(navigator.clipboard) navigator.clipboard.writeText(t); }
+
+// ============ QUIZ ============
+var quiz = [
+  {q:'کدام تگ HTML برای بزرگ‌ترین عنوان استفاده می‌شود؟', opts:['<h6>','<h1>','<p>','<head>'], a:1},
+  {q:'کدام ویژگی CSS برای رنگ متن به کار می‌رود؟', opts:['background','color','font-color','text-style'], a:1},
+  {q:'در بوت‌استرپ ۵، کدام کلاس یک ردیف (row) می‌سازد؟', opts:['.container','.col','.row','.grid'], a:2},
+  {q:'کدام کلمه‌کلیدی در جاوااسکریپت برای تعریف متغیر ثابت است؟', opts:['var','let','const','static'], a:2},
+  {q:'کدام کلمه‌کلیدی در پایتون برای تعریف تابع استفاده می‌شود؟', opts:['function','def','func','lambda'], a:1}
+];
+var qi=0, score=0;
+
+function renderQuiz(){
+  var box = document.getElementById('quizBox');
+  var next = document.getElementById('quizNext');
+  var prog = document.getElementById('quizProgress');
+  if(!box) return;
+  var q = quiz[qi];
+  prog.textContent = 'سؤال ' + (qi+1).toLocaleString('fa-IR') + ' از ' + quiz.length.toLocaleString('fa-IR');
+  var html = '<h5 class="fw-bold mb-3">'+(qi+1)+'. '+q.q+'</h5>';
+  for(var i=0;i<q.opts.length;i++){
+    html += '<button class="quiz-option" data-i="'+i+'">'+q.opts[i]+'</button>';
+  }
+  box.innerHTML = html;
+  next.disabled = true;
+  box.querySelectorAll('.quiz-option').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var chosen = +btn.dataset.i;
+      box.querySelectorAll('.quiz-option').forEach(function(b){b.disabled=true;});
+      if(chosen === q.a){ btn.classList.add('correct'); score++; }
+      else{
+        btn.classList.add('wrong');
+        box.querySelectorAll('.quiz-option')[q.a].classList.add('correct');
+      }
+      next.disabled = false;
+    });
+  });
+}
+
+window.addEventListener('load', function(){
+  var next = document.getElementById('quizNext');
+  if(!next) return;
+  renderQuiz();
+  next.addEventListener('click', function(){
+    qi++;
+    if(qi>=quiz.length){
+      var box = document.getElementById('quizBox');
+      var msg = score===quiz.length ? 'عالی! تو حرفه‌ای هستی 🔥' : score>=3 ? 'خوبه! فقط چند نکته رو مرور کن 💪' : 'اشکالی نداره، دوباره درس‌ها رو بخون و تلاش کن 📚';
+      box.innerHTML = '<div class="text-center py-4">'+
+        '<div class="fs-1 mb-2">🎉</div>'+
+        '<h4 class="fw-bold">آزمون تموم شد!</h4>'+
+        '<p style="color:var(--zy-muted)" class="mb-3">امتیاز تو: <span class="text-gradient fw-bold fs-3">'+score.toLocaleString('fa-IR')+' از '+quiz.length.toLocaleString('fa-IR')+'</span></p>'+
+        '<p style="font-size:14px;color:var(--zy-muted);">'+msg+'</p>'+
+        '<button class="btn btn-zy" onclick="qi=0;score=0;renderQuiz();document.getElementById(\'quizNext\').style.display=\'inline-block\';">🔁 تلاش دوباره</button>'+
+      '</div>';
+      next.style.display='none';
+      document.getElementById('quizProgress').textContent ='';
+    } else {
+      renderQuiz();
+    }
+  });
+});
+
+// ============ TOOLS ============
+window.addEventListener('load', function(){
+  var t = document.getElementById('cntText');
+  if(t) t.addEventListener('input', function(e){
+    var v = e.target.value;
+    document.getElementById('cntChars').textContent = v.length.toLocaleString('fa-IR');
+    document.getElementById('cntWords').textContent = (v.trim()? v.trim().split(/\s+/).length : 0).toLocaleString('fa-IR');
+    document.getElementById('cntLines').textContent = (v? v.split('\n').length : 0).toLocaleString('fa-IR');
+  });
+  randomColor(); genPwd();
+});
+
+function randomColor(){
+  var hex = '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  var box = document.getElementById('colorBox');
+  var hx = document.getElementById('colorHex');
+  if(box) box.style.background = hex;
+  if(hx) hx.textContent = hex;
+}
+function genPwd(){
+  var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+  var p='';
+  for(var i=0;i<16;i++) p += chars[Math.floor(Math.random()*chars.length)];
+  var el = document.getElementById('pwdOut');
+  if(el) el.value = p;
+}
+
+// ============ BACK TO TOP ============
+window.addEventListener('load', function(){
+  var btt = document.getElementById('backTop');
+  if(!btt) return;
+  window.addEventListener('scroll', function(){
+    if(window.scrollY>600) btt.classList.add('show');
+    else btt.classList.remove('show');
+  });
+  btt.addEventListener('click', function(){window.scrollTo({top:0, behavior:'smooth'});});
+});
+
+// ============ Smooth scroll for anchor links ============
+window.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[href^="#"]');
+  if(!a) return;
+  var href = a.getAttribute('href');
+  if(href.length<2) return;
+  var tgt = document.querySelector(href);
+  if(!tgt) return;
+  e.preventDefault();
+  tgt.scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+// ============ Newsletter ============
+window.addEventListener('submit', function(e){
+  if(e.target.tagName==='FORM' && e.target.querySelector('input[type="email"]')){
+    e.preventDefault();
+    var m = document.getElementById('newsMsg');
+    if(m) m.textContent ='✅ عضو شدی! به زیرن خوش اومدی.';
+    e.target.reset();
+  }
+}, true);
 </script>
 </body>
 </html>
